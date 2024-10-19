@@ -1,0 +1,46 @@
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css');
+
+.question{
+    display: inline;
+  position: relative;
+  }
+  .question i{cursor:pointer;color:#E11997;font-size: 18px;margin-left: 10px;}
+  .question__text{
+    position: absolute;
+    left: 45px;
+    top: -5px;
+    width: 400px;
+    max-width: 400px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E11997;
+    z-index: 9;
+    display: none;
+  }
+  .question__text.anteprima{
+    display: none;
+  }
+  .question__text::before{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f061";
+  color: #E11997;
+  position: absolute;
+  left: -20px;
+  top: 3px;
+  margin-left: 5px;
+  }
+  .question__text::after{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f057";
+  color: #E11997;
+  position: absolute;
+  right: -25px;
+  top: -3px;
+  font-size: 20px;
+  cursor:pointer;
+  }
+  .question__text b{color:#E11997; font-weight: bold;}
