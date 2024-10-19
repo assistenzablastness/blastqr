@@ -238,7 +238,7 @@ function blastqr_check_for_plugin_update($transient) {
     $current_version = '1.0.2'; // La versione corrente del plugin
     echo $current_version;
     // Fai una richiesta all'API di GitHub per ottenere l'ultima versione
-    $response = wp_remote_get('https://api.github.com/repos/tuo-username/blastqr/releases/latest');
+    $response = wp_remote_get('https://api.github.com/repos/assistenzablastness/blastqr/releases/latest');
     
     // Se ci sono errori nella richiesta, ritorna il transient senza modifiche
     if (is_wp_error($response)) {
