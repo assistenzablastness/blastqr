@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 1.0.3
+Version: 1.0.0
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -233,86 +233,65 @@ function get_lingua() {
 add_filter('pre_set_site_transient_update_plugins', 'blastqr_check_for_plugin_update');
 
 function blastqr_check_for_plugin_update($transient) {
-    // Definisci il nome del plugin e la versione corrente
-    $plugin_slug = 'blastqr/blastqr.php'; // Il percorso del file principale del plugin
-    $current_version = '1.0.3'; // La versione corrente del plugin
-    echo $current_version;
-    // Fai una richiesta all'API di GitHub per ottenere l'ultima versione
+    if (empty($transient->checked)) {
+        return $transient;
+    }
+
+    // Fetch release info from GitHub
     $response = wp_remote_get('https://api.github.com/repos/assistenzablastness/blastqr/releases/latest');
     
-    // Se ci sono errori nella richiesta, ritorna il transient senza modifiche
     if (is_wp_error($response)) {
-        error_log('Errore nella richiesta API di GitHub: ' . $response->get_error_message());
         return $transient;
     }
 
-    // Decodifica il corpo della risposta JSON
     $release = json_decode(wp_remote_retrieve_body($response));
 
-    // Aggiungi un controllo per verificare cosa contiene la risposta
-    if (empty($release)) {
-        error_log('Risposta API vuota o non valida: ' . wp_remote_retrieve_body($response));
-        return $transient;
-    }
-
-    // Verifica se 'tag_name' è presente e stampa l'output per capire cosa sta accadendo
     if (!isset($release->tag_name)) {
-        error_log('Campo tag_name non presente nella risposta API. Risposta completa: ' . print_r($release, true));
         return $transient;
     }
 
-    // Verifica se la versione su GitHub è maggiore della versione corrente
-    if (version_compare($release->tag_name, $current_version, '>')) {
-        // Crea un oggetto con le informazioni dell'aggiornamento
-        $plugin_info = array(
-            'slug' => $plugin_slug,
-            'new_version' => $release->tag_name,
-            'url' => $release->html_url,
-            'package' => $release->zipball_url // Link al file zip dell'ultima release
-        );
-        
-        // Aggiungi l'aggiornamento al transient
-        $transient->response[$plugin_slug] = (object) $plugin_info;
-    }
+    $current_version = '1.0.0'; // Define your current plugin version
     
-    echo "_---";
+    if (version_compare($release->tag_name, $current_version, '>')) {
+        error_log("Versione minore quindi va aggiornata");
+        $plugin_info = array(
+            'slug' => 'blastqr-main/blastqr.php',
+            'new_version' => $release->tag_name,
+            'package' => $release->zipball_url
+        );
+
+        $transient->response['blastqr-main/blastqr.php'] = (object) $plugin_info;
+    }
+
     return $transient;
 }
+
 
 // Mostra le informazioni dell'aggiornamento nel pannello plugin di WordPress
 add_filter('plugins_api', 'blastqr_plugin_information', 20, 3);
 
 function blastqr_plugin_information($false, $action, $args) {
-    // Definisci il nome del plugin
-    $plugin_slug = 'blastqr.php';
-    
-    // Verifica che l'azione sia 'plugin_information' e che il plugin slug sia corretto
-    if ($action === 'plugin_information' && $args->slug === $plugin_slug) {
-        // Fai una richiesta all'API di GitHub per ottenere le informazioni sull'ultima release
+    if ($action === 'plugin_information' && $args->slug === 'blastqr-main/blastqr.php') {
         $response = wp_remote_get('https://api.github.com/repos/assistenzablastness/blastqr/releases/latest');
-        
-        // Se ci sono errori nella richiesta, ritorna false
         if (is_wp_error($response)) {
             return $false;
         }
 
-        // Decodifica il corpo della risposta JSON
         $release = json_decode(wp_remote_retrieve_body($response));
-        
-        // Crea un oggetto con le informazioni del plugin
+
         $info = new stdClass();
-        $info->name = 'BlastQR'; // Nome del plugin
-        $info->slug = $plugin_slug;
+        $info->name = 'BlastQR';
+        $info->slug = 'blastqr-main/blastqr.php';
         $info->version = $release->tag_name;
-        $info->author = 'Blastness';
+        $info->author = 'BlastQR';
         $info->homepage = 'https://github.com/assistenzablastness/blastqr';
         $info->download_link = $release->zipball_url;
-        $info->requires = '5.0'; // Versione minima di WordPress richiesta
-        $info->tested = '5.8'; // Ultima versione di WordPress testata
+        $info->requires = '5.0';  // WordPress version required
+        $info->tested = '5.8';    // WordPress version tested up to
         $info->last_updated = $release->published_at;
 
         return $info;
     }
-    
+
     return $false;
 }
