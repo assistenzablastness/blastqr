@@ -257,7 +257,7 @@ function blastqr_check_for_plugin_update($transient) {
         $plugin_info = array(
             'slug' => 'blastqr-main/blastqr.php',
             'new_version' => $release->tag_name,
-            'package' => 'https://github.com/assistenzablastness/blastqr/releases/download/'.$release->tag_name.'/blastqr.zip'
+            'package' => 'https://github.com/assistenzablastness/blastqr/releases/download/'.$release->tag_name.'/blastqr-main.zip'
         );
 
         $transient->response['blastqr-main/blastqr.php'] = (object) $plugin_info;
