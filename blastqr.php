@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 1.0.1
+Version: 1.0.0
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -234,10 +234,10 @@ add_filter('pre_set_site_transient_update_plugins', 'blastqr_check_for_plugin_up
 function blastqr_check_for_plugin_update($transient) {
     // Definisci il nome del plugin e la versione corrente
     $plugin_slug = 'blastqr/blastqr.php'; // Il percorso del file principale del plugin
-    $current_version = '1.0.1'; // La versione corrente del plugin
+    $current_version = '1.0.0'; // La versione corrente del plugin
     
     // Fai una richiesta all'API di GitHub per ottenere l'ultima versione
-    $response = wp_remote_get('https://api.github.com/repos/assistenzablastness/blastqr/releases/latest');
+    $response = wp_remote_get('https://api.github.com/repos/tuo-username/blastqr/releases/latest');
     
     // Se ci sono errori nella richiesta, ritorna il transient senza modifiche
     if (is_wp_error($response)) {
@@ -246,7 +246,13 @@ function blastqr_check_for_plugin_update($transient) {
 
     // Decodifica il corpo della risposta JSON
     $release = json_decode(wp_remote_retrieve_body($response));
-    
+
+    // Aggiungi un controllo per assicurarti che `tag_name` esista nella risposta
+    if (!isset($release->tag_name)) {
+        // Se `tag_name` non è presente, restituisci il transient senza modifiche
+        return $transient;
+    }
+
     // Verifica se la versione su GitHub è maggiore della versione corrente
     if (version_compare($release->tag_name, $current_version, '>')) {
         // Crea un oggetto con le informazioni dell'aggiornamento
