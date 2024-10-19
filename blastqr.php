@@ -275,6 +275,7 @@ function blastqr_check_for_plugin_update($transient) {
         $transient->response[$plugin_slug] = (object) $plugin_info;
     }
     
+    echo "_---";
     return $transient;
 }
 
