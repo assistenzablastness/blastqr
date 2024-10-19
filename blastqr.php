@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 1.0.2
+Version: 1.0.3
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -250,14 +250,14 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '1.0.2'; // Define your current plugin version
+    $current_version = '1.0.3'; // Define your current plugin version
     
     if (version_compare($release->tag_name, $current_version, '>')) {
         error_log("Versione minore quindi va aggiornata");
         $plugin_info = array(
             'slug' => 'blastqr-main/blastqr.php',
             'new_version' => $release->tag_name,
-            'package' => $release->zipball_url
+            'package' => 'https://github.com/assistenzablastness/blastqr/releases/download/'.$release->tag_name.'/blastqr.zip'
         );
 
         $transient->response['blastqr-main/blastqr.php'] = (object) $plugin_info;
