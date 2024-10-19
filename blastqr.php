@@ -275,7 +275,7 @@ add_filter('plugins_api', 'blastqr_plugin_information', 20, 3);
 
 function blastqr_plugin_information($false, $action, $args) {
     // Definisci il nome del plugin
-    $plugin_slug = 'blastqr/blastqr.php';
+    $plugin_slug = 'blastqr.php';
     
     // Verifica che l'azione sia 'plugin_information' e che il plugin slug sia corretto
     if ($action === 'plugin_information' && $args->slug === $plugin_slug) {
