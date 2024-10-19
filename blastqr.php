@@ -189,7 +189,7 @@ function blastqr_visualizza_offerte() {
         $output .= '<img src="'. (!empty($offerta['img_file']) ? esc_url($offerta['img_file']) : plugin_dir_url(__FILE__) . 'assets/offer_img_no.jpg') .'">';
         $output .= '<h3>' . sanitize_text_field($offerta['nome']) . '</h3>';
         $output .= '<p>' . sanitize_text_field($offerta['descrizione']) . '</p>';
-        $output .= '<a href="'.$link_pren.'">'. __('Prenota') .'</a>';
+        $output .= '<a href="'.$link_pren.'">'. __('Prenota', 'blastqr') .'</a>';
         $output .= '</div>';
     }
 
