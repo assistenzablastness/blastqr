@@ -14,6 +14,7 @@ function aggiungi_form_html() {
     $anchor_class = get_option('blastqr_anchor_class', '');
     $enable_qr_shortcode = get_option('blastqr_enable_qr_shortcode', 0);
     $shortcode_name = get_option('blastqr_shortcode_name', 'qr_form_shortcode');
+    $tipo_qr = get_option('blastqr_type_qr', 'full-width');
 
     if (!function_exists('generate_options')) {
         function generate_options($max, $default_value) {
@@ -73,13 +74,14 @@ function aggiungi_form_html() {
     $add_into_class = ($use_anchor_class && !empty($anchor_class)) ? ' anchor-class' : '';
 
     $add_to_shortcode = ($enable_qr_shortcode && !empty($shortcode_name)) ? ' shortcode-class' : '';
+
     // Verifica se mostrare il form pubblicamente
     if ($enable_qr || ($enable_qr_preview && is_user_logged_in())) {
 
         // Form HTML
         $form_html = '
         <a class="prenota' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) .'" href="'. $prenota_diretto .'">'. __('Prenota', 'blastqr').'</a>
-        <form class="blast_qr_form' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) . '" action="' . esc_url($form_action) . '" id="qr-form" method="get" target="">
+        <form class="blast_qr_form '. $tipo_qr .' '. esc_attr($add_into_class) . esc_attr($add_to_shortcode) . '" action="' . esc_url($form_action) . '" id="qr-form" method="get" target="">
             <input type="hidden" id="id_stile" class="stile" name="id_stile" value="' . esc_attr($id_stile) . '"/>
             <input type="hidden" id="id_albergo" class="albergo" name="id_albergo" value="' . esc_attr($id_albergo) . '"/>
             <input type="hidden" id="dc" class="dc" name="dc" value="' . esc_attr($dc) . '"/>
@@ -89,9 +91,9 @@ function aggiungi_form_html() {
             <input type="hidden" id="aa" name="aa" value=""/>
             <input type="hidden" id="notti_1" name="notti_1" value="1"/>
         
-            <div class="qr_container">
+            <div class="qr_container '. $tipo_qr .'">
                 <div class="qr_item__calendar">
-                    <input type="text" readOnly id="dario" class="qr_item__calendar__input" />
+                    <input type="text" placeholder="'. __("Apri calendario", 'blastqr') .'" readOnly id="dario" class="qr_item__calendar__input" />
                     <div class="qr_item__calendar__book_dates">
                         <div class="qr_item__calendar__dates__element">
                             <div class="qr_item__calendar__dates__element__arrive">'. __('Check-in', 'blastqr') .'</div>
@@ -123,12 +125,10 @@ function aggiungi_form_html() {
         if ($use_anchor_class && !empty($anchor_class)) {
             // Aggiungi il form all'interno della classe di ancoraggio specificata
             echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
                     var anchor = document.querySelector(".' . esc_js($anchor_class) . '");
                     if (anchor) {
                         anchor.innerHTML = `' . addslashes($form_html) . '`;
                     }
-                });
             </script>';
         } else {
             // Mostra il form normalmente

@@ -114,7 +114,10 @@ function carica_colori_qr() {
         .prenota{
             background-color: {$button_color};
             color: {$button_text_color};
-        } 
+        }
+        .dario{
+          background-color: {$qr_background_color};
+        }  
         .dario-cell--selected, .dario-cell--inner, .dario-cell--hover{
             background-color: {$button_color};
             color: {$button_text_color};
@@ -145,7 +148,9 @@ function blastqr_load_textdomain() {
 // Funzione per caricare il CSS del QR
 function aggiungi_qr_style() {
     // Usa plugin_dir_url per ottenere il percorso corretto
-    wp_enqueue_style('qr-style', plugin_dir_url(__FILE__) . 'assets/css/qr-style.css');
+    if(get_option('blastqr_disable_base_css', 0) == false){
+        wp_enqueue_style('qr-style', plugin_dir_url(__FILE__) . 'assets/css/qr-style.css');
+    } 
     wp_enqueue_style('qr-style-dario', plugin_dir_url(__FILE__) . 'assets/css/dario.css');
 }
 

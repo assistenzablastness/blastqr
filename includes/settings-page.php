@@ -95,6 +95,8 @@ function blastqr_settings_page() {
         update_option('blastqr_enable_qr_shortcode', isset($_POST['enable_qr_shortcode']) ? 1 : 0);
         update_option('blastqr_shortcode_name', sanitize_text_field($_POST['shortcode_name']));
         update_option('blastqr_custom_css', wp_strip_all_tags($_POST['custom_css']));
+        update_option('blastqr_disable_base_css', sanitize_text_field($_POST['disable_base_css']));
+        update_option('blastqr_type_qr', sanitize_text_field($_POST['type_qr']));
 
 
         // Salva le impostazioni dei campi
@@ -124,6 +126,8 @@ function blastqr_settings_page() {
     $enable_qr_shortcode = get_option('blastqr_enable_qr_shortcode', 0);
     $shortcode_name = get_option('blastqr_shortcode_name', 'qr_form_shortcode');
     $custom_css = get_option('blastqr_custom_css', '');
+    $disable_base_css = get_option('blastqr_disable_base_css', 0);
+    $tipo_qr = get_option('blastqr_type_qr', 'full-width');
 
     $form_fields = [
         'rooms' => [
@@ -213,8 +217,21 @@ function blastqr_settings_page() {
                         </div>
                     </td>
                 </tr>
-
- 
+                <tr valign="top">
+                    <th scope="row" style="color: #E11997"><?= __('Tipologia QR', 'blastqr') ?></th>
+                    <td>
+                        <select name="type_qr">
+                            <option value="full-width" <?php selected($tipo_qr, 'full-width'); ?>>Full Width</option>
+                            <option value="box" <?php selected($tipo_qr, 'box'); ?>>Box</option>
+                        </select>
+                        <div class="question tipo_be">
+                        <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                            Tipologia QR
+                        </div>
+                    </div>
+                    </td>
+                </tr>
                 <tr valign="top">
                     <th scope="row" style="color: #E11997">Abilita QR</th>
                     <td>
@@ -346,17 +363,30 @@ function blastqr_settings_page() {
                     </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Offerte</th>
+                    <th scope="row" style="color: #E11997"><?= __('Offerte', 'blastqr') ?></th>
                     <td>
                         <div style="border:1px solid #E11997; padding:10px; width:70%; border-radius:5px;">La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto <b>[offerte]</b><br />
                         Solitamente viene inserito in una pagina "Offerte" adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di blastness per la relativa struttura ricettiva.</div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">CSS Personalizzato</th>
+                    <th scope="row" style="color: #E11997"><?= __('CSS Personalizzato', 'blastqr') ?></th>
                     <td>
                         <textarea name="custom_css" rows="10" cols="50" class="large-text"><?php echo esc_textarea($custom_css); ?></textarea>
                         <p class="description">Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend.</p>
+                    </td>
+                </tr>
+                 
+                <tr valign="top">
+                    <th scope="row" style="color: #E11997"><?= __('Disabilità CSS QR', 'blastqr') ?></th>
+                    <td>
+                        <input type="checkbox" name="disable_base_css" value="1" <?php checked($disable_base_css, 1); ?>>
+                        <div class="question abilita_qr">
+                            <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                                Abilitando questo campo, il codice CSS di base del modulo Quick Reserve verrà disabilitato.
+                            </div>
+                        </div>
                     </td>
                 </tr>
 

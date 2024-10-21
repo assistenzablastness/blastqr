@@ -28,6 +28,25 @@
   border-radius: var(--dario-border-radius-calendar);
   border: 1px solid var(--dario-border-color);
 }
+.dario {
+  position: absolute;
+  overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  -webkit-box-shadow: var(--shadow);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-calendar);
+  z-index: 999999;
+  top: 50% !important;
+  left: 50% !important;
+  bottom: unset !important;
+  right: unset !important;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
+
 
 .dario-nav {
   padding: 10px;
