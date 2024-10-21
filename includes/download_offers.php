@@ -4,8 +4,8 @@ function blastqr_scarica_offerte() {
     global $blastqr_lingua_int;
     
     // Recupera i valori delle opzioni (parametri dell'URL)
-    $id_albergo = get_option('blastqr_id_albergo', '12575');
-    $dc = get_option('blastqr_dc', '8810');
+    $id_albergo = get_option('blastqr_id_albergo', '');
+    $dc = get_option('blastqr_dc', '');
 
     // Crea l'URL per richiedere il file XML
     $url = "https://xml.verticalbooking.com/htng/prices/Offers.htm?id_albergo=" . $id_albergo .

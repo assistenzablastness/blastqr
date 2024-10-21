@@ -152,22 +152,22 @@ function blastqr_settings_page() {
         'button_color' => [
             'label' => 'Pulsante Prenota',
             'key' => 'blastqr_button_color',
-            'color' => get_option('blastqr_button_color', '#0073aa') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_button_color', '#fff') // Usa 'color' come valore predefinito
         ],
         'button_text_color' => [
             'label' => 'Testo Pulsante Prenota',
             'key' => 'blastqr_button_text_color',
-            'color' => get_option('blastqr_button_text_color', '#ffffff') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_button_text_color', '#000') // Usa 'color' come valore predefinito
         ],
         'qr_background_color' => [
             'label' => 'Sfondo Qr',
             'key' => 'blastqr_qr_background_color',
-            'color' => get_option('blastqr_qr_background_color', '#f0f0f0') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_qr_background_color', '#000') // Usa 'color' come valore predefinito
         ],
         'modify_cancel_color' => [
             'label' => 'Pulsante Modifica/Cancella',
             'key' => 'blastqr_modify_cancel_color',
-            'color' => get_option('blastqr_modify_cancel_color', '#0073aa') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_modify_cancel_color', '#fff') // Usa 'color' come valore predefinito
         ]
     ];
 
