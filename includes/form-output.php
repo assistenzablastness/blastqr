@@ -94,11 +94,11 @@ function aggiungi_form_html() {
                     <input type="text" readOnly id="dario" class="qr_item__calendar__input" />
                     <div class="qr_item__calendar__book_dates">
                         <div class="qr_item__calendar__dates__element">
-                            <div class="qr_item__calendar__dates__element__arrive">'. __('checkin', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__arrive">'. __('Check-in', 'blastqr') .'</div>
                             <div class="qr_item__calendar__dates__element__arrive__data-numero" id="data-arrivo"></div>     
                         </div>
                         <div class="layover-prenota__cont__form__list__row__calendari__element">
-                            <div class="qr_item__calendar__dates__element__departure">'. __('checkout', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__departure">'. __('Check-out', 'blastqr') .'</div>
                             <div class="qr_item__calendar__dates__element__departure__data-numero" id="data-partenza"></div>      
                         </div>
                     </div>
@@ -113,7 +113,7 @@ function aggiungi_form_html() {
 
         $form_html .= '
                 <div class="qr_item__submit">
-                    <input type="submit" class="qr_item__item__button-submit" value="'. __('Verifica', 'blastqr') .'">
+                    <input type="submit" class="qr_item__item__button-submit" value="'. __('Prenota', 'blastqr') .'">
                 </div>
                 <a class="modifica" href="'. esc_url($modifica_cancella_link) .'">'. __('Modifica/Cancella prenotazione', 'blastqr') .'</a>
             </div>
