@@ -4,9 +4,9 @@
 function aggiungi_form_html() {
     global $blastqr_lingua_int;
     // Recupera i valori dalle opzioni salvate
-    $id_albergo = get_option('blastqr_id_albergo', '12575');
-    $id_stile = get_option('blastqr_id_stile', '18535');
-    $dc = get_option('blastqr_dc', '8810');
+    $id_albergo = get_option('blastqr_id_albergo', '');
+    $id_stile = get_option('blastqr_id_stile', '');
+    $dc = get_option('blastqr_dc', '');
     $action_type = get_option('blastqr_action_type', 'premium');
     $enable_qr = get_option('blastqr_enable_qr', 0);
     $enable_qr_preview = get_option('blastqr_enable_qr_preview', 0);
