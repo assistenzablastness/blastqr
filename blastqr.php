@@ -169,46 +169,49 @@ function blastqr_enqueue_scripts() {
 
 
 function blastqr_visualizza_offerte() {
-    // Controlla se le offerte sono state scaricate
-    $offerte_scaricate = get_option('offerte_scaricate', 0);
+        $lingua = get_lingua();
 
-    $url_finale = '';
-    $tipo_be = get_option('blastqr_action_type', 'premium');
-    if($tipo_be == 'advanced'){
-        $url_finale = '/reservations/pacchetti.html?';
-    }else{
-        $url_finale = '/premium/index_pacchetti_2.html';
-    }
-
-    if (time() - $offerte_scaricate > 7200) {
-        blastqr_scarica_offerte();
-    }
-
-
-    $offerte = get_option('offerte', []);
-    // Recupera le offerte salvate
-
-    if (empty($offerte)) {
-        return '<p>Non ci sono offerte disponibili.aa</p>';
-    }
-
-    $output = '<div class="offerte-list">';
-
-    foreach ($offerte['rate_plans'] as $offerta) {
-        $link_pren = str_replace ('prenota_new.htm?', $url_finale.'?id_stile='.get_option('blastqr_id_stile', 0).'&id_albergo='.get_option('blastqr_id_albergo', 0).'&dc='.get_option('blastqr_dc', 0).'&id_prodotto_sel='.$offerta['id_prodotto'],$offerta['link_prenotazione']);
-        $output .= '<div class="offerta">';
-        $output .= '<img src="'. (!empty($offerta['img_file']) ? esc_url($offerta['img_file']) : plugin_dir_url(__FILE__) . 'assets/offer_img_no.jpg') .'">';
-        $output .= '<h3>' . sanitize_text_field($offerta['nome']) . '</h3>';
-        $output .= '<p>' . sanitize_text_field($offerta['descrizione']) . '</p>';
-        $output .= '<a href="'.$link_pren.'">'. __('Prenota', 'blastqr') .'</a>';
+        // Controlla se le offerte sono state scaricate per la lingua corrente
+        $offerte_scaricate = get_option('offerte_scaricate_' . $lingua, 0);
+    
+        // Se le offerte sono state scaricate più di 2 ore fa, scarica di nuovo
+        if (time() - $offerte_scaricate > 7200) {
+            blastqr_scarica_offerte($lingua);
+        }
+    
+        // Recupera le offerte per la lingua corrente
+        $offerte = get_option('offerte_' . $lingua, []);
+    
+        // Se non ci sono offerte, mostra un messaggio
+        if (empty($offerte)) {
+            return '<p>Non ci sono offerte disponibili.</p>';
+        }
+    
+        // Genera l'output HTML per le offerte
+        $output = '<div class="offerte-list">';
+        foreach ($offerte['rate_plans'] as $offerta) {
+            $url_finale = (get_option('blastqr_action_type', 'premium') == 'advanced') ? 
+                          '/reservations/pacchetti.html?' : '/premium/index_pacchetti_2.html';
+    
+            $link_pren = str_replace(
+                'prenota_new.htm?', 
+                $url_finale.'?id_stile='.get_option('blastqr_id_stile', 0).'&id_albergo='.get_option('blastqr_id_albergo', 0).'&dc='.get_option('blastqr_dc', 0).'&id_prodotto_sel='.$offerta['id_prodotto'], 
+                $offerta['link_prenotazione']
+            );
+    
+            $output .= '<div class="offerta">';
+            $output .= '<img src="'. (!empty($offerta['img_file']) ? esc_url($offerta['img_file']) : plugin_dir_url(__FILE__) . 'assets/offer_img_no.jpg') .'">';
+            $output .= '<h3>' . sanitize_text_field($offerta['nome']) . '</h3>';
+            $output .= '<p>' . sanitize_text_field($offerta['descrizione']) . '</p>';
+            $output .= '<a href="'.$link_pren.'">'. __('Prenota', 'blastqr') .'</a>';
+            $output .= '</div>';
+        }
+    
         $output .= '</div>';
+    
+        return $output;
     }
-
-    $output .= '</div>';
-
-    return $output;
-}
-
+    
 
 // Funzione per recuperare la lingua corrente
 function get_lingua() {
