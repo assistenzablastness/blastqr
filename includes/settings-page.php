@@ -141,11 +141,6 @@ function blastqr_settings_page() {
             'key' => 'blastqr_show_children',
             'value' => get_option('blastqr_show_children', 1) // Usa 'value' come valore predefinito
         ],
-        'discount_code' => [
-            'label' => 'Codice Sconto',
-            'key' => 'blastqr_show_discount_code',
-            'value' => get_option('blastqr_show_discount_code', 1) // Usa 'value' come valore predefinito
-        ]
     ];
 
     $color_fields = [

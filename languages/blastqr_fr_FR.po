@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the BlastQR plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: BlastQR 1.0.0\n"
+"Project-Id-Version: BlastQR 0.9.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr\n"
-"POT-Creation-Date: 2024-10-19T15:23:22+02:00\n"
-"PO-Revision-Date: 2024-10-21 09:26+0200\n"
+"POT-Creation-Date: 2024-10-21T10:00:33+02:00\n"
+"PO-Revision-Date: 2024-10-21 10:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgstr ""
 #. Description of the plugin
 #: blastqr.php
 msgid "Modulo Quick Reserve collegato al Booking Engine Blastness"
-msgstr ""
+msgstr "Module Quick Reserve lié au moteur de réservation Blastness"
 
 #. Author of the plugin
 #: blastqr.php
@@ -40,9 +40,9 @@ msgstr ""
 msgid "https://blastness.com"
 msgstr ""
 
-#: blastqr.php:192 includes/form-output.php:81
+#: blastqr.php:202 includes/form-output.php:81 includes/form-output.php:116
 msgid "Prenota"
-msgstr "Réservez"
+msgstr "Livre"
 
 #: includes/form-output.php:34
 msgid "Camere"
@@ -57,20 +57,16 @@ msgid "Bambini"
 msgstr "Enfants"
 
 #: includes/form-output.php:97
-msgid "checkin"
-msgstr "Date d'arrivée"
+msgid "Check-in"
+msgstr "Check-in"
 
 #: includes/form-output.php:101
-msgid "checkout"
-msgstr "Date de départ"
-
-#: includes/form-output.php:116
-msgid "Verifica"
-msgstr "Réservez"
+msgid "Check-out"
+msgstr "Check-out"
 
 #: includes/form-output.php:118
 msgid "Modifica/Cancella prenotazione"
-msgstr "AnnulerModifier une réservation"
+msgstr "Modifier/annuler la réservation"
 
 #: includes/settings-page.php:199
 msgid "ID Albergo"

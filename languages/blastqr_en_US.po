@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the BlastQR plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: BlastQR 1.0.0\n"
+"Project-Id-Version: BlastQR 0.9.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr\n"
-"POT-Creation-Date: 2024-10-19T15:23:22+02:00\n"
-"PO-Revision-Date: 2024-10-19 15:28+0200\n"
+"POT-Creation-Date: 2024-10-21T10:00:33+02:00\n"
+"PO-Revision-Date: 2024-10-21 10:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: blastqr.php
 msgid "BlastQR"
-msgstr "BlastQR"
+msgstr ""
 
 #. Plugin URI of the plugin
 #: blastqr.php
@@ -28,7 +28,7 @@ msgstr ""
 #. Description of the plugin
 #: blastqr.php
 msgid "Modulo Quick Reserve collegato al Booking Engine Blastness"
-msgstr ""
+msgstr "Quick Reserve module linked to Booking Engine Blastness"
 
 #. Author of the plugin
 #: blastqr.php
@@ -40,7 +40,7 @@ msgstr ""
 msgid "https://blastness.com"
 msgstr ""
 
-#: blastqr.php:192 includes/form-output.php:81
+#: blastqr.php:202 includes/form-output.php:81 includes/form-output.php:116
 msgid "Prenota"
 msgstr "Book"
 
@@ -57,20 +57,16 @@ msgid "Bambini"
 msgstr "Children"
 
 #: includes/form-output.php:97
-msgid "checkin"
-msgstr "Check-in Date"
+msgid "Check-in"
+msgstr "Check-in"
 
 #: includes/form-output.php:101
-msgid "checkout"
-msgstr "Check-out Date"
-
-#: includes/form-output.php:116
-msgid "Verifica"
-msgstr "Book"
+msgid "Check-out"
+msgstr "Check-out"
 
 #: includes/form-output.php:118
 msgid "Modifica/Cancella prenotazione"
-msgstr "Modify/Cancel reservation"
+msgstr "Cancel/modify reservation"
 
 #: includes/settings-page.php:199
 msgid "ID Albergo"
@@ -90,7 +86,7 @@ msgstr "Use QR within an anchor class"
 
 #: includes/settings-page.php:264
 msgid "Classe di ancoraggio del QR"
-msgstr "QR anchor class"
+msgstr "QR anchorage class"
 
 #: includes/settings-page.php:285
 msgid "Abilita QR tramite Shortcode"
@@ -106,4 +102,4 @@ msgstr "Form fields"
 
 #: includes/settings-page.php:336
 msgid "Colori QR"
-msgstr "QR Colors"
+msgstr "QR colours"
