@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 1.0.5
+Version: 0.9.1
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -50,14 +50,19 @@ if($enable_qr_shortcode){
 
 }
 
+// Hook per registrare [offerte] come shortcode
+add_shortcode('offerte', 'blastqr_visualizza_offerte');
+
+// Hook per caricare il textdomain
 add_action('plugins_loaded', 'blastqr_load_textdomain');
 
-function blastqr_dario_library() {
-    wp_enqueue_script('dario', 'https://cdn.blastness.biz/assets/libraries/dario/13/index.js', array(), null, true);
-}
+// Hook per caricare Dario 
 add_action('wp_enqueue_scripts', 'blastqr_dario_library');
 
+// Hook per caricare il codice JS
 add_action('wp_enqueue_scripts', 'blastqr_enqueue_scripts');
+
+
 
 // Funzioni
 
@@ -135,6 +140,7 @@ function blastqr_load_textdomain() {
     }
 }
 
+
 // Funzione per caricare il CSS del QR
 function aggiungi_qr_style() {
     // Usa plugin_dir_url per ottenere il percorso corretto
@@ -142,15 +148,21 @@ function aggiungi_qr_style() {
     wp_enqueue_style('qr-style-dario', plugin_dir_url(__FILE__) . 'assets/css/dario.css');
 }
 
+
+// Funzione per caricare la libreria Dario
+function blastqr_dario_library() {
+    wp_enqueue_script('dario', 'https://cdn.blastness.biz/assets/libraries/dario/13/index.js', array(), null, true);
+}
+
+
 // Funzione per caricare il file JavaScript nel frontend
 function blastqr_enqueue_scripts() {
     // Registra il file JavaScript (true significa che sarà caricato nel footer)
     wp_enqueue_script(
-        'quick-reserve-js', // Handle univoco
-        plugin_dir_url(__FILE__) . 'assets/js/quick-reserve.js', // Percorso del file
-        array('jquery'), // Dipendenze (es. jQuery)
-        '1.0.0', // Versione del file
-        true // Carica nel footer
+        'quick-reserve-js',
+        plugin_dir_url(__FILE__) . 'assets/js/quick-reserve.js',
+        '1.0.0',
+        true
     );
 }
 
@@ -179,8 +191,6 @@ function blastqr_visualizza_offerte() {
         return '<p>Non ci sono offerte disponibili.aa</p>';
     }
 
-  
-    // Crea l'output HTML per le offerte
     $output = '<div class="offerte-list">';
 
     foreach ($offerte['rate_plans'] as $offerta) {
@@ -197,8 +207,9 @@ function blastqr_visualizza_offerte() {
 
     return $output;
 }
-add_shortcode('offerte', 'blastqr_visualizza_offerte');
 
+
+// Funzione per recuperare la lingua corrente
 function get_lingua() {
     $locale = get_locale(); // Recupera il locale corrente di WordPress
 
@@ -228,9 +239,14 @@ function get_lingua() {
     }
 }
 
-// Controlla gli aggiornamenti del plugin da GitHub
+// Aggiornamenti
 
+// Controlla gli aggiornamenti del plugin da GitHub
 add_filter('pre_set_site_transient_update_plugins', 'blastqr_check_for_plugin_update');
+
+// Mostra le informazioni dell'aggiornamento nel pannello plugin di WordPress
+add_filter('plugins_api', 'blastqr_plugin_information', 20, 3);
+
 
 function blastqr_check_for_plugin_update($transient) {
     if (empty($transient->checked)) {
@@ -250,10 +266,9 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '1.0.5'; // Define your current plugin version
+    $current_version = '0.9.1';
     
     if (version_compare($release->tag_name, $current_version, '>')) {
-        error_log("Versione minore quindi va aggiornata");
         $plugin_info = array(
             'slug' => 'blastqr-main/blastqr.php',
             'new_version' => $release->tag_name,
@@ -266,9 +281,6 @@ function blastqr_check_for_plugin_update($transient) {
     return $transient;
 }
 
-
-// Mostra le informazioni dell'aggiornamento nel pannello plugin di WordPress
-add_filter('plugins_api', 'blastqr_plugin_information', 20, 3);
 
 function blastqr_plugin_information($false, $action, $args) {
     if ($action === 'plugin_information' && $args->slug === 'blastqr-main/blastqr.php') {
@@ -286,8 +298,8 @@ function blastqr_plugin_information($false, $action, $args) {
         $info->author = 'BlastQR';
         $info->homepage = 'https://github.com/assistenzablastness/blastqr';
         $info->download_link = $release->zipball_url;
-        $info->requires = '5.0';  // WordPress version required
-        $info->tested = '5.8';    // WordPress version tested up to
+        $info->requires = '5.0';
+        $info->tested = '5.8'; 
         $info->last_updated = $release->published_at;
 
         return $info;

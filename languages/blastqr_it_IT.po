@@ -1,0 +1,109 @@
+# Copyright (C) 2024 Blastness
+# This file is distributed under the same license as the BlastQR plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: BlastQR 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr\n"
+"POT-Creation-Date: 2024-10-19T15:23:22+02:00\n"
+"PO-Revision-Date: 2024-10-19 15:24+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: blastqr\n"
+
+#. Plugin Name of the plugin
+#: blastqr.php
+msgid "BlastQR"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: blastqr.php
+msgid "https://github.com/assistenzablastness/blastqr"
+msgstr ""
+
+#. Description of the plugin
+#: blastqr.php
+msgid "Modulo Quick Reserve collegato al Booking Engine Blastness"
+msgstr ""
+
+#. Author of the plugin
+#: blastqr.php
+msgid "Blastness"
+msgstr ""
+
+#. Author URI of the plugin
+#: blastqr.php
+msgid "https://blastness.com"
+msgstr ""
+
+#: blastqr.php:192 includes/form-output.php:81
+msgid "Prenota"
+msgstr "Prenota"
+
+#: includes/form-output.php:34
+msgid "Camere"
+msgstr "Camere"
+
+#: includes/form-output.php:41
+msgid "Adulti"
+msgstr "Adulti"
+
+#: includes/form-output.php:48
+msgid "Bambini"
+msgstr "Bambini"
+
+#: includes/form-output.php:97
+msgid "checkin"
+msgstr "Data arrivo"
+
+#: includes/form-output.php:101
+msgid "checkout"
+msgstr "Data partenza"
+
+#: includes/form-output.php:116
+msgid "Verifica"
+msgstr "Verifica"
+
+#: includes/form-output.php:118
+msgid "Modifica/Cancella prenotazione"
+msgstr "Modifica/Cancella prenotazione"
+
+#: includes/settings-page.php:199
+msgid "ID Albergo"
+msgstr "ID Albergo"
+
+#: includes/settings-page.php:204
+msgid "ID Stile"
+msgstr "ID Stile"
+
+#: includes/settings-page.php:209
+msgid "DC"
+msgstr "DC"
+
+#: includes/settings-page.php:253
+msgid "Usa QR all'interno di una classe di ancoraggio"
+msgstr "Usa QR all'interno di una classe di ancoraggio"
+
+#: includes/settings-page.php:264
+msgid "Classe di ancoraggio del QR"
+msgstr "Classe di ancoraggio del QR"
+
+#: includes/settings-page.php:285
+msgid "Abilita QR tramite Shortcode"
+msgstr "Abilita QR tramite Shortcode"
+
+#: includes/settings-page.php:295
+msgid "Nome dello shortcode"
+msgstr "Nome dello shortcode"
+
+#: includes/settings-page.php:314
+msgid "Campi form"
+msgstr "Campi form"
+
+#: includes/settings-page.php:336
+msgid "Colori QR"
+msgstr "Colori QR"

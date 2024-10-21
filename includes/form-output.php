@@ -94,11 +94,11 @@ function aggiungi_form_html() {
                     <input type="text" readOnly id="dario" class="qr_item__calendar__input" />
                     <div class="qr_item__calendar__book_dates">
                         <div class="qr_item__calendar__dates__element">
-                            <div class="qr_item__calendar__dates__element__arrive">'. __('qr-arrivo', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__arrive">'. __('checkin', 'blastqr') .'</div>
                             <div class="qr_item__calendar__dates__element__arrive__data-numero" id="data-arrivo"></div>     
                         </div>
                         <div class="layover-prenota__cont__form__list__row__calendari__element">
-                            <div class="qr_item__calendar__dates__element__departure">'. __('qr-partenza', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__departure">'. __('checkout', 'blastqr') .'</div>
                             <div class="qr_item__calendar__dates__element__departure__data-numero" id="data-partenza"></div>      
                         </div>
                     </div>
