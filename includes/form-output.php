@@ -83,7 +83,7 @@ function aggiungi_form_html() {
             <input type="hidden" id="id_stile" class="stile" name="id_stile" value="' . esc_attr($id_stile) . '"/>
             <input type="hidden" id="id_albergo" class="albergo" name="id_albergo" value="' . esc_attr($id_albergo) . '"/>
             <input type="hidden" id="dc" class="dc" name="dc" value="' . esc_attr($dc) . '"/>
-            <input type="hidden" name="lingua_int" value="'. $blastqr_lingua_int .'"/>
+            <input type="hidden" id="lingua_int" name="lingua_int" value="'. $blastqr_lingua_int .'"/>
             <input type="hidden" id="gg" name="gg" value=""/>
             <input type="hidden" id="mm" name="mm" value=""/>
             <input type="hidden" id="aa" name="aa" value=""/>
