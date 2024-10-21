@@ -94,10 +94,10 @@ function blastqr_custom_css() {
 // Funzione per caricare i colori del Quick Reserve
 function carica_colori_qr() {
     // Recupera i valori dei colori dalle impostazioni
-    $button_color = get_option('blastqr_button_color', '#fff');
-    $button_text_color = get_option('blastqr_button_text_color', '#000');
-    $qr_background_color = get_option('blastqr_qr_background_color', '#000');
-    $modify_cancel_color = get_option('blastqr_modify_cancel_color', '#fff');
+    $button_color = get_option('blastqr_button_color', '#ffffff');
+    $button_text_color = get_option('blastqr_button_text_color', '#000000');
+    $qr_background_color = get_option('blastqr_qr_background_color', '#000000');
+    $modify_cancel_color = get_option('blastqr_modify_cancel_color', '#ffffff');
 
     // Genera il CSS dinamico
     $custom_css = "

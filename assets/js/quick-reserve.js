@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    let lingua = document.getElementById('lingua_int').value;
+
+    let lingua = 'eng';
+    if(document.getElementById('lingua_int')){
+      lingua = document.getElementById('lingua_int').value;
+    }
 
     if(typeof(document.getElementById("dario")) != 'undefined' && document.getElementById("dario") != null){
         const dario = new Dario('#dario', {
