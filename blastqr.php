@@ -130,10 +130,11 @@ function carica_colori_qr() {
 function blastqr_load_textdomain() {
     // Recupera la lingua corrente impostata in WordPress
     $locale = get_locale();
-    
+  
     // Percorso della directory delle traduzioni
-    $mofile = dirname(__FILE__) . '/languages/blastqr-' . $locale . '.mo';
+    $mofile = dirname(__FILE__) . '/languages/blastqr_' . $locale . '.mo';
 
+   
     // Verifica se il file di traduzione esiste e lo carica
     if (file_exists($mofile)) {
         load_textdomain('blastqr', $mofile);
