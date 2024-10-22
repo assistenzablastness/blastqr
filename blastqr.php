@@ -86,7 +86,7 @@ function registra_shortcode_dinamico() {
 function blastqr_custom_css() {
     $custom_css = get_option('blastqr_custom_css', '');
     if (!empty($custom_css)) {
-        echo '<style type="text/css">' . esc_html($custom_css) . '</style>';
+        echo '<style type="text/css">' . stripslashes($custom_css) . '</style>';
     }
 }
 
@@ -189,7 +189,7 @@ function blastqr_visualizza_offerte() {
     
         // Se non ci sono offerte, mostra un messaggio
         if (empty($offerte)) {
-            return '<p>Non ci sono offerte disponibili.</p>';
+            return '<p>'. __('Non ci sono offerte disponibili.', 'blastqr').'</p>';
         }
     
         // Genera l'output HTML per le offerte

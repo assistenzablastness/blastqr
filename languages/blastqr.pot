@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the BlastQR plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: BlastQR 0.9.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr\n"
+"Project-Id-Version: BlastQR 0.9.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr-main\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-21T10:00:33+02:00\n"
+"POT-Creation-Date: 2024-10-21T17:10:16+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: blastqr\n"
@@ -39,68 +39,92 @@ msgstr ""
 msgid "https://blastness.com"
 msgstr ""
 
-#: blastqr.php:202
-#: includes/form-output.php:81
-#: includes/form-output.php:116
+#: blastqr.php:192
+msgid "Non ci sono offerte disponibili."
+msgstr ""
+
+#: blastqr.php:211
+#: includes/form-output.php:83
+#: includes/form-output.php:118
 msgid "Prenota"
 msgstr ""
 
-#: includes/form-output.php:34
+#: includes/form-output.php:35
 msgid "Camere"
 msgstr ""
 
-#: includes/form-output.php:41
+#: includes/form-output.php:42
 msgid "Adulti"
 msgstr ""
 
-#: includes/form-output.php:48
+#: includes/form-output.php:49
 msgid "Bambini"
 msgstr ""
 
-#: includes/form-output.php:97
+#: includes/form-output.php:96
+msgid "Apri calendario"
+msgstr ""
+
+#: includes/form-output.php:99
 msgid "Check-in"
 msgstr ""
 
-#: includes/form-output.php:101
+#: includes/form-output.php:103
 msgid "Check-out"
 msgstr ""
 
-#: includes/form-output.php:118
+#: includes/form-output.php:120
 msgid "Modifica/Cancella prenotazione"
 msgstr ""
 
-#: includes/settings-page.php:199
+#: includes/settings-page.php:198
 msgid "ID Albergo"
 msgstr ""
 
-#: includes/settings-page.php:204
+#: includes/settings-page.php:203
 msgid "ID Stile"
 msgstr ""
 
-#: includes/settings-page.php:209
+#: includes/settings-page.php:208
 msgid "DC"
 msgstr ""
 
-#: includes/settings-page.php:253
+#: includes/settings-page.php:221
+msgid "Tipologia QR"
+msgstr ""
+
+#: includes/settings-page.php:265
 msgid "Usa QR all'interno di una classe di ancoraggio"
 msgstr ""
 
-#: includes/settings-page.php:264
+#: includes/settings-page.php:276
 msgid "Classe di ancoraggio del QR"
 msgstr ""
 
-#: includes/settings-page.php:285
+#: includes/settings-page.php:297
 msgid "Abilita QR tramite Shortcode"
 msgstr ""
 
-#: includes/settings-page.php:295
+#: includes/settings-page.php:307
 msgid "Nome dello shortcode"
 msgstr ""
 
-#: includes/settings-page.php:314
+#: includes/settings-page.php:326
 msgid "Campi form"
 msgstr ""
 
-#: includes/settings-page.php:336
+#: includes/settings-page.php:348
 msgid "Colori QR"
+msgstr ""
+
+#: includes/settings-page.php:366
+msgid "Offerte"
+msgstr ""
+
+#: includes/settings-page.php:373
+msgid "CSS Personalizzato"
+msgstr ""
+
+#: includes/settings-page.php:381
+msgid "Disabilità CSS QR"
 msgstr ""

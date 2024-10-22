@@ -95,7 +95,7 @@ function blastqr_settings_page() {
         update_option('blastqr_enable_qr_shortcode', isset($_POST['enable_qr_shortcode']) ? 1 : 0);
         update_option('blastqr_shortcode_name', sanitize_text_field($_POST['shortcode_name']));
         update_option('blastqr_custom_css', wp_strip_all_tags($_POST['custom_css']));
-        update_option('blastqr_disable_base_css', sanitize_text_field($_POST['disable_base_css']));
+        update_option('blastqr_disable_base_css', isset($_POST['disable_base_css']) ? 1 : 0);
         update_option('blastqr_type_qr', sanitize_text_field($_POST['type_qr']));
 
 
@@ -327,7 +327,7 @@ function blastqr_settings_page() {
                         <td>
                             <div>
                             <?php foreach ($form_fields as $key => $field): ?>
-                                <label for="show_<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?></label>
+                                <label for="show_<?php echo $key ?>"><?php echo esc_html($field['label']); ?></label>
                                 <input type="checkbox" name="show_<?php echo esc_attr($key); ?>" value="1" <?php checked($field['value'], 1); ?>>
                             <?php endforeach; ?>
                                 <div class="question abilita_qr">
@@ -349,7 +349,7 @@ function blastqr_settings_page() {
                         <td>
                             <div>
                             <?php foreach ($color_fields as $key => $field): ?>
-                                <label for="<?php echo esc_attr($key); ?>"><?php echo esc_html($field['label']); ?></label>
+                                <label for="<?php echo $key; ?>"><?php echo esc_html($field['label']); ?></label>
                                 <input type="color" name="<?php echo esc_attr($key); ?>" value="<?php echo esc_attr($field['color']); ?>">
                             <?php endforeach; ?>
                                 <div class="question abilita_qr">
@@ -372,7 +372,7 @@ function blastqr_settings_page() {
                 <tr valign="top">
                     <th scope="row" style="color: #E11997"><?= __('CSS Personalizzato', 'blastqr') ?></th>
                     <td>
-                        <textarea name="custom_css" rows="10" cols="50" class="large-text"><?php echo esc_textarea($custom_css); ?></textarea>
+                        <textarea name="custom_css" rows="10" cols="50" class="large-text"><?php echo stripslashes(esc_html($custom_css)); ?></textarea>
                         <p class="description">Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend.</p>
                     </td>
                 </tr>
