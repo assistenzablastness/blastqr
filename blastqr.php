@@ -99,6 +99,11 @@ function carica_colori_qr() {
     $qr_background_color = get_option('blastqr_qr_background_color', '#000000');
     $modify_cancel_color = get_option('blastqr_modify_cancel_color', '#ffffff');
 
+    $sfondo_calendario = get_option('blastqr_calendario_sfondo', '#ffffff');
+    $testo_calendario = get_option('blastqr_calendario_text', '#000000');
+    $sfondo_date_selezionate = get_option('blastqr_sfondo_seleziona_date', '#000000');
+    $testo_date_selezionate = get_option('blastqr_text_seleziona_date', '#ffffff');
+
     // Genera il CSS dinamico
     $custom_css = "
         .blast_qr_form {
@@ -116,11 +121,17 @@ function carica_colori_qr() {
             color: {$button_text_color};
         }
         .dario{
-          background-color: {$qr_background_color};
+          background-color: {$sfondo_calendario};
         }  
+        .dario-cell{
+            color: {$testo_calendario};
+        }
+        .dario-cell--disable{
+            color: #cccccc;
+        }
         .dario-cell--selected, .dario-cell--inner, .dario-cell--hover{
-            background-color: {$button_color};
-            color: {$button_text_color};
+            background-color: {$sfondo_date_selezionate};
+            color: {$testo_date_selezionate};
         }   
         ";
 

@@ -77,6 +77,29 @@ function blastqr_settings_page() {
                 'label' => 'Pulsante Modifica/Cancella',
                 'key' => 'blastqr_modify_cancel_color',
                 'color' => '#ffffff'
+            ],
+        ];
+        
+        $color_calendar = [
+            'calendario_sfondo' => [
+                'label' => 'Sfondo calendario',
+                'key' => 'blastqr_calendario_sfondo',
+                'color' => '#ffffff'
+            ],
+            'calendario_text' => [
+                'label' => 'Testo date calendario',
+                'key' => 'blastqr_calendario_text',
+                'color' => '#000000'
+            ],
+            'sfondo_seleziona_date' => [
+                'label' => 'Background date selezionate calendario',
+                'key' => 'blastqr_sfondo_seleziona_date',
+                'color' => '#000000'
+            ],            
+            'text_seleziona_date' => [
+                'label' => 'Testo date selezionate calendario',
+                'key' => 'blastqr_text_seleziona_date',
+                'color' => '#ffffff'
             ]
         ];
     
@@ -109,6 +132,10 @@ function blastqr_settings_page() {
             update_option('blastqr_' . $key, sanitize_hex_color($_POST[$key]));
         }
     
+        foreach ($color_calendar as $key => $field) {
+            update_option('blastqr_' . $key, sanitize_hex_color($_POST[$key]));
+        }
+
 
         echo '<div class="updated"><p>Impostazioni salvate.</p></div>';
     }
@@ -151,22 +178,45 @@ function blastqr_settings_page() {
         'button_color' => [
             'label' => 'Pulsante Prenota',
             'key' => 'blastqr_button_color',
-            'color' => get_option('blastqr_button_color', '#ffffff') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_button_color', '#ffffff')
         ],
         'button_text_color' => [
             'label' => 'Testo Pulsante Prenota',
             'key' => 'blastqr_button_text_color',
-            'color' => get_option('blastqr_button_text_color', '#000000') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_button_text_color', '#000000')
         ],
         'qr_background_color' => [
             'label' => 'Sfondo Qr',
             'key' => 'blastqr_qr_background_color',
-            'color' => get_option('blastqr_qr_background_color', '#000000') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_qr_background_color', '#000000')
         ],
         'modify_cancel_color' => [
             'label' => 'Pulsante Modifica/Cancella',
             'key' => 'blastqr_modify_cancel_color',
-            'color' => get_option('blastqr_modify_cancel_color', '#ffffff') // Usa 'color' come valore predefinito
+            'color' => get_option('blastqr_modify_cancel_color', '#ffffff')
+        ],
+    ];
+
+    $color_calendar = [
+        'calendario_sfondo' => [
+            'label' => 'Sfondo calendario',
+            'key' => 'blastqr_calendario_sfondo',
+            'color' => get_option('blastqr_calendario_sfondo', '#ffffff')
+        ],
+        'calendario_text' => [
+            'label' => 'Testo date calendario',
+            'key' => 'blastqr_calendario_text',
+            'color' => get_option('blastqr_calendario_text', '#000000')
+        ],
+        'sfondo_seleziona_date' => [
+            'label' => 'Background date selezionate calendario',
+            'key' => 'blastqr_sfondo_seleziona_date',
+            'color' => get_option('blastqr_sfondo_seleziona_date', '#000000')
+        ],            
+        'text_seleziona_date' => [
+            'label' => 'Testo date selezionate calendario',
+            'key' => 'blastqr_text_seleziona_date',
+            'color' => get_option('blastqr_text_seleziona_date', '#ffffff')
         ]
     ];
 
@@ -355,7 +405,25 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Colori del modulo Quick Reserve e calendario
+                                        Colori del modulo Quick Reserve
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr valign="top">
+                        <th scope="row" style="color: #E11997"><?= __('Colori calendarioo', 'blastqr') ?></th>
+                        <td>
+                            <div>
+                            <?php foreach ($color_calendar as $key => $field): ?>
+                                <label for="<?php echo $key; ?>"><?php echo esc_html($field['label']); ?></label>
+                                <input type="color" name="<?php echo esc_attr($key); ?>" value="<?php echo esc_attr($field['color']); ?>">
+                            <?php endforeach; ?>
+                                <div class="question abilita_qr">
+                                    <i class="far fa-question-circle"></i>
+                                    <div class="question__text">
+                                        Colori del calendario
                                     </div>
                                 </div>
                             </div>
