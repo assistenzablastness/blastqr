@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   if(typeof(document.getElementById("dario")) != 'undefined' && document.getElementById("dario") != null){
-    console.log("prova");
       const dario = new Dario('#dario', {
           classes: 'dario--mod',
           inline: false,
