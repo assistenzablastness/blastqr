@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 0.9.3
+Version: 0.9.5
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -57,8 +57,6 @@ add_shortcode('offerte', 'blastqr_visualizza_offerte');
 add_action('plugins_loaded', 'blastqr_load_textdomain');
 
 // Hook per caricare Dario 
-add_action('wp_enqueue_scripts', 'blastqr_dario_library');
-
 // Hook per caricare il codice JS
 add_action('wp_enqueue_scripts', 'blastqr_enqueue_scripts');
 
@@ -70,6 +68,15 @@ add_action('wp_enqueue_scripts', 'blastqr_enqueue_scripts');
 // Funzione per stampare il form
 function stampaForm(){
     echo aggiungi_form_html();
+}
+
+// Funzione banner cookie
+function bannerCookie(){
+    global $blastqr_lingua_int;
+
+    $banner = "<script id='cookieScriptInclusion' defer type='text/javascript' src='https://bcm-public.blastness.com/init.js?v=2&l=".$blastqr_lingua_int."'></script>";
+    
+    echo $banner;
 }
 
 
@@ -166,10 +173,10 @@ function aggiungi_qr_style() {
 }
 
 
-// Funzione per caricare la libreria Dario
-function blastqr_dario_library() {
-    wp_enqueue_script('dario', 'https://cdn.blastness.biz/assets/libraries/dario/13/index.js', array(), null, true);
-}
+//
+// function blastqr_dario_library() {
+//     wp_enqueue_script('dario', 'https://cdn.blastness.biz/assets/libraries/dario/13/index.js', array(), null, true);
+// }
 
 
 // Funzione per caricare il file JavaScript nel frontend
@@ -181,6 +188,16 @@ function blastqr_enqueue_scripts() {
         '1.0.0',
         true
     );
+    wp_enqueue_script('dario', 'https://cdn.blastness.biz/assets/libraries/dario/13/index.js', array(), null, true);
+    
+    $enable_cookie = get_option('blastqr_enable_cookie', 0);
+
+    if($enable_cookie){
+        // Aggiungere banner cookie
+        add_action('wp_footer', 'bannerCookie');
+    }
+
+
 }
 
 
@@ -286,7 +303,7 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '0.9.3';
+    $current_version = '0.9.5';
     
     if (version_compare($release->tag_name, $current_version, '>')) {
         $plugin_info = array(

@@ -120,7 +120,7 @@ function blastqr_settings_page() {
         update_option('blastqr_custom_css', wp_strip_all_tags($_POST['custom_css']));
         update_option('blastqr_disable_base_css', isset($_POST['disable_base_css']) ? 1 : 0);
         update_option('blastqr_type_qr', sanitize_text_field($_POST['type_qr']));
-
+        update_option('blastqr_enable_cookie', isset($_POST['enable_cookie']) ? 1 : 0);
 
         // Salva le impostazioni dei campi
         foreach ($form_fields as $key => $field) {
@@ -151,27 +151,33 @@ function blastqr_settings_page() {
     $use_anchor_class = get_option('blastqr_use_anchor_class', 0);
     $anchor_class = get_option('blastqr_anchor_class', '');
     $enable_qr_shortcode = get_option('blastqr_enable_qr_shortcode', 0);
-    $shortcode_name = get_option('blastqr_shortcode_name', 'qr_form_shortcode');
+    $shortcode_name = get_option('blastqr_shortcode_name', 'quick-reserve');
     $custom_css = get_option('blastqr_custom_css', '');
     $disable_base_css = get_option('blastqr_disable_base_css', 0);
     $tipo_qr = get_option('blastqr_type_qr', 'full-width');
+    $enable_cookie = get_option('blastqr_enable_cookie', 0);
 
     $form_fields = [
         'rooms' => [
             'label' => 'Camere',
             'key' => 'blastqr_show_rooms',
-            'value' => get_option('blastqr_show_rooms', 1) // Usa 'value' come valore predefinito
+            'value' => get_option('blastqr_show_rooms', 1) 
         ],
         'adults' => [
             'label' => 'Adulti',
             'key' => 'blastqr_show_adults',
-            'value' => get_option('blastqr_show_adults', 1) // Usa 'value' come valore predefinito
+            'value' => get_option('blastqr_show_adults', 1)
         ],
         'children' => [
             'label' => 'Bambini',
             'key' => 'blastqr_show_children',
-            'value' => get_option('blastqr_show_children', 1) // Usa 'value' come valore predefinito
+            'value' => get_option('blastqr_show_children', 1)
         ],
+        'promo_code' => [
+            'label' => 'Codice Sconto',
+            'key'=> 'blastqr_show_promo_code',
+            'value' => get_option('blastqr_show_promo_code', 0)
+        ]
     ];
 
     $color_fields = [
@@ -453,6 +459,19 @@ function blastqr_settings_page() {
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
                                 Abilitando questo campo, il codice CSS di base del modulo Quick Reserve verrà disabilitato.
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row" style="color: #E11997"><?= __('Abilità banner cookie', 'blastqr') ?></th>
+                    <td>
+                        <input type="checkbox" name="enable_cookie" value="1" <?php checked($enable_cookie, 1); ?>>
+                        <div class="question abilita_qr">
+                            <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                                Abilitando questo campo viene aggiunto il banner cookie
                             </div>
                         </div>
                     </td>
