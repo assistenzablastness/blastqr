@@ -15,6 +15,9 @@ function aggiungi_form_html() {
     $enable_qr_shortcode = get_option('blastqr_enable_qr_shortcode', 0);
     $shortcode_name = get_option('blastqr_shortcode_name', 'qr_form_shortcode');
     $tipo_qr = get_option('blastqr_type_qr', 'full-width');
+    $enable_fixed_discount_code = get_option('blastqr_enable_fixed_discount_code', 0);
+    $fixed_discount_code = get_option('blastqr_fixed_discount_code', '');
+    $discount_code_visibility = get_option('blastqr_discount_code_visibility', 'both');
 
     if (!function_exists('generate_options')) {
         function generate_options($max, $default_value) {
@@ -51,6 +54,13 @@ function aggiungi_form_html() {
                     </div>',
             'option' => get_option('blastqr_show_children', 1),
         ],
+        'discount_code' => [
+            'label' => 'Codice sconto',
+            'html' => '<div class="qr_item">
+                        <input type="text" placeholder="'. __("Codice sconto", 'blastqr') .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" />
+                    </div>',
+            'option' => get_option('blastqr_show_discount_code', 1),
+        ]
     ];
 
     $prenota_diretto = '';
@@ -75,13 +85,36 @@ function aggiungi_form_html() {
 
     $add_to_shortcode = ($enable_qr_shortcode && !empty($shortcode_name)) ? ' shortcode-class' : '';
 
+
+    $generic_codice_mobile = '';
+    $generic_codice_desktop = '';
+
+    $sconto_height = '';
+    if($form_fields['discount_code']['option'] == 1){
+        $sconto_height = 'sconto-height';
+    }
+    
+    if($enable_fixed_discount_code && ($discount_code_visibility == 'mobile' || $discount_code_visibility == 'both')){
+        $generic_codice_mobile = '&generic_codice='.$fixed_discount_code;
+    } 
+    if($enable_fixed_discount_code && ($discount_code_visibility == 'desktop' || $discount_code_visibility == 'both')){
+        if($form_fields['discount_code']['option'] == 1){
+            $form_fields['discount_code']['html'] = '<div class="qr_item">
+                        <input type="text" placeholder="'. __("Codice sconto", 'blastqr') .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" value="'.$fixed_discount_code.'" />
+                    </div>';
+        } else{
+            $generic_codice_desktop = '<input type="hidden" id="generic_codice" name="generic_codice" value="'.$fixed_discount_code.'"/>';
+        }
+    }
+
+
     // Verifica se mostrare il form pubblicamente
     if ($enable_qr || ($enable_qr_preview && is_user_logged_in())) {
 
         // Form HTML
         $form_html = '
-        <a class="prenota' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) .'" href="'. $prenota_diretto .'">'. __('Prenota', 'blastqr').'</a>
-        <form class="blast_qr_form '. $tipo_qr .' '. esc_attr($add_into_class) . esc_attr($add_to_shortcode) . '" action="' . esc_url($form_action) . '" id="qr-form" method="get" target="">
+        <a class="prenota' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) .'" href="'. $prenota_diretto. $generic_codice_mobile .'">'. __('Prenota', 'blastqr').'</a>
+        <form class="blast_qr_form '. $sconto_height ." " . $tipo_qr .' '. esc_attr($add_into_class) . esc_attr($add_to_shortcode) . '" action="' . esc_url($form_action) . '" id="qr-form" method="get" target="">
             <input type="hidden" id="id_stile" class="stile" name="id_stile" value="' . esc_attr($id_stile) . '"/>
             <input type="hidden" id="id_albergo" class="albergo" name="id_albergo" value="' . esc_attr($id_albergo) . '"/>
             <input type="hidden" id="dc" class="dc" name="dc" value="' . esc_attr($dc) . '"/>
@@ -90,6 +123,7 @@ function aggiungi_form_html() {
             <input type="hidden" id="mm" name="mm" value=""/>
             <input type="hidden" id="aa" name="aa" value=""/>
             <input type="hidden" id="notti_1" name="notti_1" value="1"/>
+            '.$generic_codice_desktop.'
         
             <div class="qr_container '. $tipo_qr .'">
                 <div class="qr_item__calendar">

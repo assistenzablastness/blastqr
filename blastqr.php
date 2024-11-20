@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 0.9.5
+Version: 0.9.6
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -110,7 +110,43 @@ function carica_colori_qr() {
     $testo_calendario = get_option('blastqr_calendario_text', '#000000');
     $sfondo_date_selezionate = get_option('blastqr_sfondo_seleziona_date', '#000000');
     $testo_date_selezionate = get_option('blastqr_text_seleziona_date', '#ffffff');
+    
+    // Retrieve position settings
+    $fullwidth_positions = [
+        'top' => get_option('blastqr_fullwidth_top', ''),
+        'bottom' => get_option('blastqr_fullwidth_bottom', ''),
+        'left' => get_option('blastqr_fullwidth_left', ''),
+        'right' => get_option('blastqr_fullwidth_right', ''),
+    ];
 
+    $box_positions = [
+        'top' => get_option('blastqr_box_top', '20'),
+        'bottom' => get_option('blastqr_box_bottom', ''),
+        'left' => get_option('blastqr_box_left', ''),
+        'right' => get_option('blastqr_box_right', '20'),
+    ];
+
+    // Function to process position values
+    function process_position_value($value) {
+        if ($value === '') {
+            return 'unset';
+        }
+        if (is_numeric($value)) {
+            return $value . 'px';
+        }
+        // Since we're only accepting numbers, any non-numeric value defaults to 'unset'
+        return 'unset';
+    }
+
+    // Process positions for full-width
+    foreach ($fullwidth_positions as $key => $value) {
+        $fullwidth_positions[$key] = process_position_value($value);
+    }
+
+    // Process positions for box
+    foreach ($box_positions as $key => $value) {
+        $box_positions[$key] = process_position_value($value);
+    }
     // Genera il CSS dinamico
     $custom_css = "
         .blast_qr_form {
@@ -140,6 +176,21 @@ function carica_colori_qr() {
             background-color: {$sfondo_date_selezionate};
             color: {$testo_date_selezionate};
         }   
+        ";
+    
+        $custom_css .= "
+            .blast_qr_form.full-width {
+                top: {$fullwidth_positions['top']};
+                bottom: {$fullwidth_positions['bottom']};
+                left: {$fullwidth_positions['left']};
+                right: {$fullwidth_positions['right']};
+            }
+            .blast_qr_form.box {
+                top: {$box_positions['top']};
+                bottom: {$box_positions['bottom']};
+                left: {$box_positions['left']};
+                right: {$box_positions['right']};
+            }
         ";
 
     // Stampa il CSS direttamente nel frontend
@@ -303,7 +354,7 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '0.9.5';
+    $current_version = '0.9.6';
     
     if (version_compare($release->tag_name, $current_version, '>')) {
         $plugin_info = array(

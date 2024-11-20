@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the BlastQR plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: BlastQR 0.9.3\n"
+"Project-Id-Version: BlastQR 0.9.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr-main\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-21T17:10:16+02:00\n"
+"POT-Creation-Date: 2024-11-20T11:27:18+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: blastqr\n"
@@ -39,92 +39,232 @@ msgstr ""
 msgid "https://blastness.com"
 msgstr ""
 
-#: blastqr.php:192
+#: blastqr.php:271
 msgid "Non ci sono offerte disponibili."
 msgstr ""
 
-#: blastqr.php:211
-#: includes/form-output.php:83
-#: includes/form-output.php:118
+#: blastqr.php:290
+#: includes/form-output.php:116
+#: includes/form-output.php:152
 msgid "Prenota"
 msgstr ""
 
-#: includes/form-output.php:35
+#: includes/form-output.php:38
 msgid "Camere"
 msgstr ""
 
-#: includes/form-output.php:42
+#: includes/form-output.php:45
 msgid "Adulti"
 msgstr ""
 
-#: includes/form-output.php:49
+#: includes/form-output.php:52
 msgid "Bambini"
 msgstr ""
 
-#: includes/form-output.php:96
+#: includes/form-output.php:60
+#: includes/form-output.php:103
+msgid "Codice sconto"
+msgstr ""
+
+#: includes/form-output.php:130
 msgid "Apri calendario"
 msgstr ""
 
-#: includes/form-output.php:99
+#: includes/form-output.php:133
 msgid "Check-in"
 msgstr ""
 
-#: includes/form-output.php:103
+#: includes/form-output.php:137
 msgid "Check-out"
 msgstr ""
 
-#: includes/form-output.php:120
+#: includes/form-output.php:154
 msgid "Modifica/Cancella prenotazione"
 msgstr ""
 
-#: includes/settings-page.php:198
+#: includes/settings-page.php:295
+msgid "Questa voce viene comunicata da Blastness al momento della fornitura, in base alla tipologia di booking scelta insieme al cliente. Prima di modificare questo parametro accertarsi con Blastness della presenza di uno stile adatto alla nuova tipologia."
+msgstr ""
+
+#: includes/settings-page.php:305
 msgid "ID Albergo"
 msgstr ""
 
-#: includes/settings-page.php:203
+#: includes/settings-page.php:310
 msgid "ID Stile"
 msgstr ""
 
-#: includes/settings-page.php:208
+#: includes/settings-page.php:315
 msgid "DC"
 msgstr ""
 
-#: includes/settings-page.php:221
+#: includes/settings-page.php:322
+msgid "Questi parametri vengono forniti da Blastness e sono necessari per il corretto funzionamento del modulo Quick Reserve"
+msgstr ""
+
+#: includes/settings-page.php:328
+#: includes/settings-page.php:337
 msgid "Tipologia QR"
 msgstr ""
 
-#: includes/settings-page.php:265
-msgid "Usa QR all'interno di una classe di ancoraggio"
+#: includes/settings-page.php:343
+msgid "Posizione QR Full-Width"
 msgstr ""
 
-#: includes/settings-page.php:276
-msgid "Classe di ancoraggio del QR"
+#: includes/settings-page.php:356
+msgid " Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un valore nel campo \"Right\" il modulo verrà posizionato a destra, viceversa se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo \"Left\" il modulo verrà posizionato a sinistra. Allo stesso modo impostando \"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo."
 msgstr ""
 
-#: includes/settings-page.php:297
-msgid "Abilita QR tramite Shortcode"
+#: includes/settings-page.php:362
+msgid "Posizione QR Box"
 msgstr ""
 
-#: includes/settings-page.php:307
-msgid "Nome dello shortcode"
-msgstr ""
-
-#: includes/settings-page.php:326
-msgid "Campi form"
-msgstr ""
-
-#: includes/settings-page.php:348
-msgid "Colori QR"
-msgstr ""
-
-#: includes/settings-page.php:366
-msgid "Offerte"
-msgstr ""
-
-#: includes/settings-page.php:373
-msgid "CSS Personalizzato"
+#: includes/settings-page.php:375
+msgid "Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un valore nel campo \"Right\" il modulo verrà posizionato a destra discostando il box dal bordo destro dello stesso numero di px impostati nel valore relativo. Viceversa se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo \"Left\" il modulo verrà posizionato a sinistra con la distanza dal bordo impostata. Allo stesso modo impostando \"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo."
 msgstr ""
 
 #: includes/settings-page.php:381
-msgid "Disabilità CSS QR"
+msgid "Abilita QR"
+msgstr ""
+
+#: includes/settings-page.php:387
+msgid "Abilitando questo campo, il modulo Quick Reserve verrà mostrato sul sito web."
+msgstr ""
+
+#: includes/settings-page.php:393
+msgid "Abilita Preview QR (Solo per utenti loggati)"
+msgstr ""
+
+#: includes/settings-page.php:399
+msgid "Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità di prova, visibile solamente per gli utenti loggati."
+msgstr ""
+
+#: includes/settings-page.php:405
+msgid "Codice Sconto Fisso"
+msgstr ""
+
+#: includes/settings-page.php:409
+msgid "Abilita codice sconto fisso"
+msgstr ""
+
+#: includes/settings-page.php:414
+msgid "Abilitando questo campo, può essere impostato un codice sconto di default"
+msgstr ""
+
+#: includes/settings-page.php:419
+msgid "Codice sconto attivo:"
+msgstr ""
+
+#: includes/settings-page.php:423
+msgid "Visibilità Codice Sconto"
+msgstr ""
+
+#: includes/settings-page.php:425
+msgid "Solo Mobile"
+msgstr ""
+
+#: includes/settings-page.php:426
+msgid "Solo Desktop"
+msgstr ""
+
+#: includes/settings-page.php:427
+msgid "Entrambi"
+msgstr ""
+
+#: includes/settings-page.php:432
+msgid "Il codice sconto può essere impostato per essere sia visibile da desktop / mobile"
+msgstr ""
+
+#: includes/settings-page.php:441
+msgid "Classe QR"
+msgstr ""
+
+#: includes/settings-page.php:445
+msgid "Usa QR all'interno di una classe di ancoraggio"
+msgstr ""
+
+#: includes/settings-page.php:450
+msgid "Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di un classe"
+msgstr ""
+
+#: includes/settings-page.php:456
+msgid "Classe di ancoraggio del QR"
+msgstr ""
+
+#: includes/settings-page.php:461
+msgid "La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se l'opzione è stata selezionata"
+msgstr ""
+
+#: includes/settings-page.php:477
+msgid "Abilita QR tramite Shortcode"
+msgstr ""
+
+#: includes/settings-page.php:482
+msgid "Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di una pagina o di un post utilizzando uno shortcode"
+msgstr ""
+
+#: includes/settings-page.php:487
+msgid "Nome dello shortcode"
+msgstr ""
+
+#: includes/settings-page.php:492
+msgid "Nome dello shortcode che desideri utilizzare"
+msgstr ""
+
+#: includes/settings-page.php:506
+msgid "Campi form"
+msgstr ""
+
+#: includes/settings-page.php:516
+msgid "Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve"
+msgstr ""
+
+#: includes/settings-page.php:528
+msgid "Colori QR"
+msgstr ""
+
+#: includes/settings-page.php:538
+msgid "Colori del modulo Quick Reserve"
+msgstr ""
+
+#: includes/settings-page.php:546
+msgid "Colori calendarioo"
+msgstr ""
+
+#: includes/settings-page.php:556
+msgid "Colori del calendario"
+msgstr ""
+
+#: includes/settings-page.php:564
+msgid "Offerte"
+msgstr ""
+
+#: includes/settings-page.php:566
+msgid ""
+"La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto <b>[offerte]</b><br />\n"
+"                        Solitamente viene inserito in una pagina 'Offerte' adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di blastness per la relativa struttura ricettiva."
+msgstr ""
+
+#: includes/settings-page.php:571
+msgid "CSS Personalizzato"
+msgstr ""
+
+#: includes/settings-page.php:574
+msgid "Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend."
+msgstr ""
+
+#: includes/settings-page.php:579
+msgid "Disabilita CSS QR"
+msgstr ""
+
+#: includes/settings-page.php:585
+msgid "Abilitando questo campo, il CSS base del modulo Quick Reserve verrà disabilitato"
+msgstr ""
+
+#: includes/settings-page.php:592
+msgid "Abilita banner cookie"
+msgstr ""
+
+#: includes/settings-page.php:598
+msgid "Abilitando questo campo viene aggiunto il banner cookie"
 msgstr ""

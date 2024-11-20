@@ -1,6 +1,7 @@
 // Esegui la funzione al caricamento del DOM
 document.addEventListener('DOMContentLoaded', function() {
     display_help();
+    togglePositionSettings();
 });
 
 function display_help() {
@@ -30,3 +31,24 @@ function display_help() {
     });
 }
 
+// Function to show/hide position settings based on selected QR type
+function togglePositionSettings() {
+    var qrTypeSelect = document.querySelector('select[name="type_qr"]');
+    var selectedType = qrTypeSelect.value;
+
+    // Hide all position settings
+    var positionSettings = document.querySelectorAll('.position-settings');
+    positionSettings.forEach(function(el) {
+        el.style.display = 'none';
+    });
+
+    // Show the position settings for the selected QR type
+    var positionDiv = document.getElementById('position-' + selectedType);
+    if (positionDiv) {
+        positionDiv.style.display = 'table-row';
+    }
+}
+
+// Add event listener to the QR type select field
+var qrTypeSelect = document.querySelector('select[name="type_qr"]');
+qrTypeSelect.addEventListener('change', togglePositionSettings);

@@ -102,7 +102,21 @@ function blastqr_settings_page() {
                 'color' => '#ffffff'
             ]
         ];
-    
+
+        // **Define the position arrays before the if block**
+        $fullwidth_positions = [
+            'top' => get_option('blastqr_fullwidth_top', ''),
+            'bottom' => get_option('blastqr_fullwidth_bottom', ''),
+            'left' => get_option('blastqr_fullwidth_left', ''),
+            'right' => get_option('blastqr_fullwidth_right', ''),
+        ];
+        
+        $box_positions = [
+            'top' => get_option('blastqr_box_top', '20'),
+            'bottom' => get_option('blastqr_box_bottom', ''),
+            'left' => get_option('blastqr_box_left', ''),
+            'right' => get_option('blastqr_box_right', '20'),
+        ];
     
 
     // Salva le impostazioni quando il form viene sottomesso
@@ -121,6 +135,10 @@ function blastqr_settings_page() {
         update_option('blastqr_disable_base_css', isset($_POST['disable_base_css']) ? 1 : 0);
         update_option('blastqr_type_qr', sanitize_text_field($_POST['type_qr']));
         update_option('blastqr_enable_cookie', isset($_POST['enable_cookie']) ? 1 : 0);
+        update_option('blastqr_enable_fixed_discount_code', isset($_POST['enable_fixed_discount_code']) ? 1 : 0);
+        update_option('blastqr_fixed_discount_code', sanitize_text_field($_POST['fixed_discount_code']));
+        update_option('blastqr_discount_code_visibility', sanitize_text_field($_POST['discount_code_visibility']));
+
 
         // Salva le impostazioni dei campi
         foreach ($form_fields as $key => $field) {
@@ -134,6 +152,22 @@ function blastqr_settings_page() {
     
         foreach ($color_calendar as $key => $field) {
             update_option('blastqr_' . $key, sanitize_hex_color($_POST[$key]));
+        }
+
+        foreach (['fullwidth', 'box'] as $type) {
+            $positions = ($type === 'fullwidth') ? $fullwidth_positions : $box_positions;
+            foreach ($positions as $pos => $value) {
+                $field_name = $type . '_' . $pos;
+                $input_value = isset($_POST[$field_name]) ? trim($_POST[$field_name]) : '';
+                if ($input_value === '') {
+                    // If empty, save as empty string
+                    update_option('blastqr_' . $field_name, '');
+                } else {
+                    // Ensure it's a number
+                    $numeric_value = is_numeric($input_value) ? $input_value : '';
+                    update_option('blastqr_' . $field_name, $numeric_value);
+                }
+            }
         }
 
 
@@ -156,6 +190,23 @@ function blastqr_settings_page() {
     $disable_base_css = get_option('blastqr_disable_base_css', 0);
     $tipo_qr = get_option('blastqr_type_qr', 'full-width');
     $enable_cookie = get_option('blastqr_enable_cookie', 0);
+    $enable_fixed_discount_code = get_option('blastqr_enable_fixed_discount_code', 0);
+    $fixed_discount_code = get_option('blastqr_fixed_discount_code', '');
+    $discount_code_visibility = get_option('blastqr_discount_code_visibility', 'both');
+
+    $fullwidth_positions = [
+        'top' => get_option('blastqr_fullwidth_top', 'unset'),
+        'bottom' => get_option('blastqr_fullwidth_bottom', '0'),
+        'left' => get_option('blastqr_fullwidth_left', 'unset'),
+        'right' => get_option('blastqr_fullwidth_right', 'unset'),
+    ];
+    
+    $box_positions = [
+        'top' => get_option('blastqr_box_top', '20'),
+        'bottom' => get_option('blastqr_box_bottom', 'unset'),
+        'left' => get_option('blastqr_box_left', 'unset'),
+        'right' => get_option('blastqr_box_right', '20'),
+    ];
 
     $form_fields = [
         'rooms' => [
@@ -173,10 +224,10 @@ function blastqr_settings_page() {
             'key' => 'blastqr_show_children',
             'value' => get_option('blastqr_show_children', 1)
         ],
-        'promo_code' => [
+        'discount_code' => [
             'label' => 'Codice Sconto',
-            'key'=> 'blastqr_show_promo_code',
-            'value' => get_option('blastqr_show_promo_code', 0)
+            'key'=> 'blastqr_show_discount_code',
+            'value' => get_option('blastqr_show_discount_code', 0)
         ]
     ];
 
@@ -241,13 +292,13 @@ function blastqr_settings_page() {
                         <div class="question tipo_be">
                         <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                            Questa voce viene comunicata da Blastness al momento della fornitura, in base alla tipologia di booking scelta insieme al cliente. Prima di modificare questo parametro accertarsi con Blastness della presenza di uno stile adatto alla nuova tipologia.
+                            <?= __('Questa voce viene comunicata da Blastness al momento della fornitura, in base alla tipologia di booking scelta insieme al cliente. Prima di modificare questo parametro accertarsi con Blastness della presenza di uno stile adatto alla nuova tipologia.', 'blastqr') ?>
                         </div>
                     </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Parametri BE</th>
+                    <th scope="row" style="color: #E11997"><?= __('Parametri BE') ?></th>
                     <td>
                         <div style="display: flex; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
@@ -268,7 +319,7 @@ function blastqr_settings_page() {
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                Parametri di configurazione per la connesione con il Booking Engine. Questi parametri vengono comunicati nella mail con le istruzioni di integrazione
+                                <?= __('Questi parametri vengono forniti da Blastness e sono necessari per il corretto funzionamento del modulo Quick Reserve', 'blastqr') ?>
                             </div>
                         </div>
                     </td>
@@ -283,38 +334,111 @@ function blastqr_settings_page() {
                         <div class="question tipo_be">
                         <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                            Tipologia QR
+                            <?= __('Tipologia QR', 'blastqr') ?>
                         </div>
                     </div>
                     </td>
                 </tr>
-                <tr valign="top">
-                    <th scope="row" style="color: #E11997">Abilita QR</th>
+                <tr valign="top" class="position-settings" id="position-full-width">
+                    <th scope="row" style="color: #E11997"><?= __('Posizione QR Full-Width', 'blastqr')?></th>
                     <td>
-                        <input type="checkbox" name="enable_qr" value="1" <?php checked($enable_qr, 1); ?>>
+                        <label for="fullwidth_top">Top:</label>
+                        <input type="number" name="fullwidth_top" value="<?php echo esc_attr($fullwidth_positions['top']); ?>" />
+                        <label for="fullwidth_bottom">Bottom:</label>
+                        <input type="number" name="fullwidth_bottom" value="<?php echo esc_attr($fullwidth_positions['bottom']); ?>" />
+                        <label for="fullwidth_left">Left:</label>
+                        <input type="number" name="fullwidth_left" value="<?php echo esc_attr($fullwidth_positions['left']); ?>" />
+                        <label for="fullwidth_right">Right:</label>
+                        <input type="number" name="fullwidth_right" value="<?php echo esc_attr($fullwidth_positions['right']); ?>" />
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                Abilitando questo campo, il modulo Quick Reserve verrà mostrato pubblicamente. 
+                               <?= __(' Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo "Left" e impostando un valore nel campo "Right" il modulo verrà posizionato a destra, viceversa se si lascia vuoto il campo "Right" e si imposta un valore nel campo "Left" il modulo verrà posizionato a sinistra. Allo stesso modo impostando "Top" e "Bottom" si può determinare la posizione verticale del modulo.', 'blastqr') ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr valign="top" class="position-settings" id="position-box">
+                    <th scope="row" style="color: #E11997"><?= __('Posizione QR Box', 'blastqr') ?></th>
+                    <td>
+                        <label for="box_top">Top:</label>
+                        <input type="number" name="box_top" value="<?php echo esc_attr($box_positions['top']); ?>" />
+                        <label for="box_bottom">Bottom:</label>
+                        <input type="number" name="box_bottom" value="<?php echo esc_attr($box_positions['bottom']); ?>" />
+                        <label for="box_left">Left:</label>
+                        <input type="number" name="box_left" value="<?php echo esc_attr($box_positions['left']); ?>" />
+                        <label for="box_right">Right:</label>
+                        <input type="number" name="box_right" value="<?php echo esc_attr($box_positions['right']); ?>" />
+                        <div class="question abilita_qr">
+                            <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                                <?= __('Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo "Left" e impostando un valore nel campo "Right" il modulo verrà posizionato a destra discostando il box dal bordo destro dello stesso numero di px impostati nel valore relativo. Viceversa se si lascia vuoto il campo "Right" e si imposta un valore nel campo "Left" il modulo verrà posizionato a sinistra con la distanza dal bordo impostata. Allo stesso modo impostando "Top" e "Bottom" si può determinare la posizione verticale del modulo.', 'blastqr') ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Abilita Preview QR (Solo per utenti loggati)</th>
+                    <th scope="row" style="color: #E11997"><?= __('Abilita QR','blastqr') ?></th>
+                    <td>
+                        <input type="checkbox" name="enable_qr" value="1" <?php checked($enable_qr, 1); ?>>
+                        <div class="question abilita_qr">
+                            <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                                <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato sul sito web.', 'blastqr') ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row" style="color: #E11997"><?= __('Abilita Preview QR (Solo per utenti loggati)', 'blastqr') ?></th>
                     <td>
                         <input type="checkbox" name="enable_qr_preview" value="1" <?php checked($enable_qr_preview, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità di prova, visibile solamente per gli utenti loggati.
+                                <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità di prova, visibile solamente per gli utenti loggati.', 'blastqr') ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row" style="color: #E11997"><?= __('Codice Sconto Fisso', 'blastqr')?></th>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 20px">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <label for="enable_fixed_discount_code"><?= __('Abilita codice sconto fisso', 'blastqr') ?></label>
+                                <input type="checkbox" name="enable_fixed_discount_code" value="1" <?php checked($enable_fixed_discount_code, 1); ?>>
+                                <div class="question abilita_qr">
+                                    <i class="far fa-question-circle"></i>
+                                    <div class="question__text">
+                                        <?= __('Abilitando questo campo, può essere impostato un codice sconto di default', 'blastqr') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <label for="fixed_discount_code"><?= __('Codice sconto attivo:','blastqr') ?></label>
+                                <input type="text" name="fixed_discount_code" value="<?php echo esc_attr($fixed_discount_code); ?>" />
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <label for="discount_code_visibility"><?= __('Visibilità Codice Sconto', 'blastqr') ?></label>
+                            <select name="discount_code_visibility">
+                                <option value="mobile" <?php selected($discount_code_visibility, 'mobile'); ?>><?= __('Solo Mobile', 'blastqr') ?></option>
+                                <option value="desktop" <?php selected($discount_code_visibility, 'desktop'); ?>><?= __('Solo Desktop', 'blastqr') ?></option>
+                                <option value="both" <?php selected($discount_code_visibility, 'both'); ?>><?= __('Entrambi', 'blastqr') ?></option>
+                            </select>
+                            <div class="question abilita_qr">
+                                <i class="far fa-question-circle"></i>
+                                <div class="question__text">
+                                    <?= __('Il codice sconto può essere impostato per essere sia visibile da desktop / mobile', 'blastqr') ?>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </td>
                 </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Classe QR</th>
+                    <th scope="row" style="color: #E11997"><?= __('Classe QR','blastqr') ?></th>
                     <td>
                         <div style="display: flex; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
@@ -323,7 +447,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di un classe
+                                        <?= __("Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di un classe", 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -334,12 +458,12 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se l'opzione è stata selezionata
+                                        <?= __("La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se l'opzione è stata selezionata", 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
-       
-                    </div>
+
+                        </div>
                     </td>
 
 
@@ -355,7 +479,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Abilitando questo campo, il modulo Quick Reserve verrà posizionato utilizzando uno shortcode
+                                       <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato all\'interno di una pagina o di un post utilizzando uno shortcode', 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -365,7 +489,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Nome dello shortcode che desideri utilizzare
+                                        <?= __('Nome dello shortcode che desideri utilizzare', 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -389,7 +513,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve
+                                        <?= __("Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve", 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -411,7 +535,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Colori del modulo Quick Reserve
+                                        <?= __('Colori del modulo Quick Reserve', 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -429,7 +553,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        Colori del calendario
+                                        <?= __('Colori del calendario', 'blastqr') ?>
                                     </div>
                                 </div>
                             </div>
@@ -439,39 +563,39 @@ function blastqr_settings_page() {
                 <tr valign="top">
                     <th scope="row" style="color: #E11997"><?= __('Offerte', 'blastqr') ?></th>
                     <td>
-                        <div style="border:1px solid #E11997; padding:10px; width:70%; border-radius:5px;">La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto <b>[offerte]</b><br />
-                        Solitamente viene inserito in una pagina "Offerte" adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di blastness per la relativa struttura ricettiva.</div>
+                        <div style="border:1px solid #E11997; padding:10px; width:70%; border-radius:5px;"><?= __("La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto <b>[offerte]</b><br />
+                        Solitamente viene inserito in una pagina 'Offerte' adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di blastness per la relativa struttura ricettiva.", 'blastqr'); ?></div>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row" style="color: #E11997"><?= __('CSS Personalizzato', 'blastqr') ?></th>
                     <td>
                         <textarea name="custom_css" rows="10" cols="50" class="large-text"><?php echo stripslashes(esc_html($custom_css)); ?></textarea>
-                        <p class="description">Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend.</p>
+                        <p class="description"><?= __('Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend.', 'blastqr') ?></p>
                     </td>
                 </tr>
                  
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Disabilità CSS QR', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= __('Disabilita CSS QR', 'blastqr') ?></th>
                     <td>
                         <input type="checkbox" name="disable_base_css" value="1" <?php checked($disable_base_css, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                Abilitando questo campo, il codice CSS di base del modulo Quick Reserve verrà disabilitato.
+                                <?= __('Abilitando questo campo, il CSS base del modulo Quick Reserve verrà disabilitato', 'blastqr') ?>
                             </div>
                         </div>
                     </td>
                 </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Abilità banner cookie', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= __('Abilita banner cookie', 'blastqr') ?></th>
                     <td>
                         <input type="checkbox" name="enable_cookie" value="1" <?php checked($enable_cookie, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                Abilitando questo campo viene aggiunto il banner cookie
+                                <?= __('Abilitando questo campo viene aggiunto il banner cookie','blastqr') ?>
                             </div>
                         </div>
                     </td>

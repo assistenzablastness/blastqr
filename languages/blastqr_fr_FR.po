@@ -3,9 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BlastQR 0.9.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr\n"
-"POT-Creation-Date: 2024-10-21T10:00:33+02:00\n"
-"PO-Revision-Date: 2024-10-21 10:22+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blastqr-main\n"
+"POT-Creation-Date: 2024-11-20T11:27:18+01:00\n"
+"PO-Revision-Date: 2024-11-20 12:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -40,66 +40,317 @@ msgstr ""
 msgid "https://blastness.com"
 msgstr ""
 
-#: blastqr.php:202 includes/form-output.php:81 includes/form-output.php:116
+#: blastqr.php:271
+msgid "Non ci sono offerte disponibili."
+msgstr "Il n'y a pas d'offres disponibles."
+
+#: blastqr.php:290 includes/form-output.php:116 includes/form-output.php:152
 msgid "Prenota"
 msgstr "Livre"
 
-#: includes/form-output.php:34
+#: includes/form-output.php:38
 msgid "Camere"
 msgstr "Chambres"
 
-#: includes/form-output.php:41
+#: includes/form-output.php:45
 msgid "Adulti"
 msgstr "Adultes"
 
-#: includes/form-output.php:48
+#: includes/form-output.php:52
 msgid "Bambini"
 msgstr "Enfants"
 
-#: includes/form-output.php:97
+#: includes/form-output.php:60 includes/form-output.php:103
+msgid "Codice sconto"
+msgstr "Code de réduction"
+
+#: includes/form-output.php:130
+msgid "Apri calendario"
+msgstr "Calendrier ouvert"
+
+#: includes/form-output.php:133
 msgid "Check-in"
 msgstr "Check-in"
 
-#: includes/form-output.php:101
+#: includes/form-output.php:137
 msgid "Check-out"
 msgstr "Check-out"
 
-#: includes/form-output.php:118
+#: includes/form-output.php:154
 msgid "Modifica/Cancella prenotazione"
 msgstr "Modifier/annuler la réservation"
 
-#: includes/settings-page.php:199
+#: includes/settings-page.php:295
+msgid ""
+"Questa voce viene comunicata da Blastness al momento della fornitura, in "
+"base alla tipologia di booking scelta insieme al cliente. Prima di "
+"modificare questo parametro accertarsi con Blastness della presenza di uno "
+"stile adatto alla nuova tipologia."
+msgstr ""
+"Cette entrée est communiquée par Blastness au moment de la livraison, en "
+"fonction du style de réservation choisi avec le client. Avant de modifier ce "
+"paramètre, assurez-vous auprès de Blastness que le style est adapté au "
+"nouveau type."
+
+#: includes/settings-page.php:305
 msgid "ID Albergo"
 msgstr ""
 
-#: includes/settings-page.php:204
+#: includes/settings-page.php:310
 msgid "ID Stile"
 msgstr ""
 
-#: includes/settings-page.php:209
+#: includes/settings-page.php:315
 msgid "DC"
 msgstr ""
 
-#: includes/settings-page.php:253
+#: includes/settings-page.php:322
+msgid ""
+"Questi parametri vengono forniti da Blastness e sono necessari per il "
+"corretto funzionamento del modulo Quick Reserve"
+msgstr ""
+"Ces paramètres sont fournis par Blastness et sont nécessaires au bon "
+"fonctionnement du module Quick Reserve."
+
+#: includes/settings-page.php:328 includes/settings-page.php:337
+msgid "Tipologia QR"
+msgstr "Typologie des QR"
+
+#: includes/settings-page.php:343
+msgid "Posizione QR Full-Width"
+msgstr "Position QR Full-Width"
+
+#: includes/settings-page.php:356
+msgid ""
+" Impostando i valori nei campi può essere determinata la posizione del "
+"modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un "
+"valore nel campo \"Right\" il modulo verrà posizionato a destra, viceversa "
+"se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo "
+"\"Left\" il modulo verrà posizionato a sinistra. Allo stesso modo impostando "
+"\"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo."
+msgstr ""
+"En définissant des valeurs dans les champs, la position du module Quick "
+"Reserve peut être déterminée. En laissant le champ « Gauche » vide et en "
+"définissant une valeur dans le champ « Droite », le module sera positionné à "
+"droite, et inversement, en laissant le champ « Droite » vide et en "
+"définissant une valeur dans le champ « Gauche », le module sera positionné à "
+"gauche. De même, en définissant les champs « Haut » et « Bas », vous pouvez "
+"déterminer la position verticale du module."
+
+#: includes/settings-page.php:362
+msgid "Posizione QR Box"
+msgstr "Posizione QR BOX"
+
+#: includes/settings-page.php:375
+msgid ""
+"Impostando i valori nei campi può essere determinata la posizione del modulo "
+"Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un valore nel "
+"campo \"Right\" il modulo verrà posizionato a destra discostando il box dal "
+"bordo destro dello stesso numero di px impostati nel valore relativo. "
+"Viceversa se si lascia vuoto il campo \"Right\" e si imposta un valore nel "
+"campo \"Left\" il modulo verrà posizionato a sinistra con la distanza dal "
+"bordo impostata. Allo stesso modo impostando \"Top\" e \"Bottom\" si può "
+"determinare la posizione verticale del modulo."
+msgstr ""
+" Impostando i valori nei campi può essere determinata la posizione del "
+"modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un "
+"valore nel campo \"Right\" il modulo verrà posizionato a destra, viceversa "
+"se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo "
+"\"Left\" il modulo verrà posizionato a sinistra. Allo stesso modo impostando "
+"\"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo."
+
+#: includes/settings-page.php:381
+msgid "Abilita QR"
+msgstr "Activer QR"
+
+#: includes/settings-page.php:387
+msgid ""
+"Abilitando questo campo, il modulo Quick Reserve verrà mostrato sul sito web."
+msgstr ""
+"En activant ce champ, le formulaire de réservation rapide sera affiché sur "
+"le site web."
+
+#: includes/settings-page.php:393
+msgid "Abilita Preview QR (Solo per utenti loggati)"
+msgstr ""
+"Activer la prévisualisation QR (uniquement pour les utilisateurs connectés)"
+
+#: includes/settings-page.php:399
+msgid ""
+"Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità "
+"di prova, visibile solamente per gli utenti loggati."
+msgstr ""
+"En activant ce champ, le module Réserve rapide sera affiché en mode test, "
+"visible uniquement par les utilisateurs connectés."
+
+#: includes/settings-page.php:405
+msgid "Codice Sconto Fisso"
+msgstr "Code de réduction fixe"
+
+#: includes/settings-page.php:409
+msgid "Abilita codice sconto fisso"
+msgstr "Activer le code de réduction fixe"
+
+#: includes/settings-page.php:414
+msgid ""
+"Abilitando questo campo, può essere impostato un codice sconto di default"
+msgstr ""
+"En activant ce champ, il est possible de définir un code de réduction par "
+"défaut."
+
+#: includes/settings-page.php:419
+msgid "Codice sconto attivo:"
+msgstr "Code de réduction actif :"
+
+#: includes/settings-page.php:423
+msgid "Visibilità Codice Sconto"
+msgstr "Code de réduction Visibility"
+
+#: includes/settings-page.php:425
+msgid "Solo Mobile"
+msgstr "Only Mobile"
+
+#: includes/settings-page.php:426
+msgid "Solo Desktop"
+msgstr "Only Desktop"
+
+#: includes/settings-page.php:427
+msgid "Entrambi"
+msgstr "Les deux"
+
+#: includes/settings-page.php:432
+msgid ""
+"Il codice sconto può essere impostato per essere sia visibile da desktop / "
+"mobile"
+msgstr ""
+"Le code de réduction peut être configuré pour être visible à la fois sur "
+"ordinateur et sur mobile."
+
+#: includes/settings-page.php:441
+msgid "Classe QR"
+msgstr "Classe QR"
+
+#: includes/settings-page.php:445
 msgid "Usa QR all'interno di una classe di ancoraggio"
 msgstr "Utiliser les QR dans une classe d'ancrage"
 
-#: includes/settings-page.php:264
+#: includes/settings-page.php:450
+msgid ""
+"Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno "
+"di un classe"
+msgstr ""
+"En activant ce champ, le formulaire de réserve rapide sera affiché dans une "
+"classe."
+
+#: includes/settings-page.php:456
 msgid "Classe di ancoraggio del QR"
 msgstr "Classe d'ancrage QR"
 
-#: includes/settings-page.php:285
+#: includes/settings-page.php:461
+msgid ""
+"La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se "
+"l'opzione è stata selezionata"
+msgstr ""
+"La classe dans laquelle le module de réserve rapide est ajouté, si l'option "
+"est sélectionnée."
+
+#: includes/settings-page.php:477
 msgid "Abilita QR tramite Shortcode"
 msgstr "Activer les QR via un shortcode"
 
-#: includes/settings-page.php:295
+#: includes/settings-page.php:482
+msgid ""
+"Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno "
+"di una pagina o di un post utilizzando uno shortcode"
+msgstr ""
+"En activant ce champ, le module Quick Reserve sera affiché dans une page ou "
+"un article à l'aide d'un shortcode."
+
+#: includes/settings-page.php:487
 msgid "Nome dello shortcode"
 msgstr "Nom du shortcode"
 
-#: includes/settings-page.php:314
+#: includes/settings-page.php:492
+msgid "Nome dello shortcode che desideri utilizzare"
+msgstr "Nom du shortcode que vous souhaitez utiliser"
+
+#: includes/settings-page.php:506
 msgid "Campi form"
 msgstr "Champs du formulaire"
 
-#: includes/settings-page.php:336
+#: includes/settings-page.php:516
+msgid "Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve"
+msgstr ""
+"Vous pouvez choisir les champs à afficher dans le formulaire de réservation "
+"rapide"
+
+#: includes/settings-page.php:528
 msgid "Colori QR"
 msgstr "Couleurs QR"
+
+#: includes/settings-page.php:538
+msgid "Colori del modulo Quick Reserve"
+msgstr "Couleurs des modules de réserve rapide"
+
+#: includes/settings-page.php:546
+msgid "Colori calendarioo"
+msgstr "Couleurs du calendrier"
+
+#: includes/settings-page.php:556
+#, fuzzy
+#| msgid "Colori calendarioo"
+msgid "Colori del calendario"
+msgstr "Couleurs du calendrier"
+
+#: includes/settings-page.php:564
+msgid "Offerte"
+msgstr "Offres"
+
+#: includes/settings-page.php:566
+msgid ""
+"La funzionalità che stampa l'elenco delle Offerte speciali disponibili per "
+"la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo "
+"desiderato il segnaposto <b>[offerte]</b><br />\n"
+"                        Solitamente viene inserito in una pagina 'Offerte' "
+"adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale "
+"e in modo automatico secondo i settaggi presenti sull'extranet di blastness "
+"per la relativa struttura ricettiva."
+msgstr ""
+"La fonctionnalité qui permet d'imprimer la liste des offres spéciales "
+"disponibles pour l'établissement est automatique et est activée en insérant "
+"le caractère générique <b>[offres]</b><br /> sur la page ou à l'endroit "
+"souhaité.\n"
+"Elle est généralement insérée dans une page « Offres » utilisée pour "
+"afficher cette liste, qui est mise à jour en temps réel et automatiquement "
+"en fonction des paramètres de l'extranet Blastness pour l'établissement "
+"d'hébergement concerné."
+
+#: includes/settings-page.php:571
+msgid "CSS Personalizzato"
+msgstr "CSS personnalisé"
+
+#: includes/settings-page.php:574
+msgid ""
+"Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend."
+msgstr "Saisissez ici votre CSS personnalisé, qui sera appliqué au frontend."
+
+#: includes/settings-page.php:579
+#, fuzzy
+#| msgid "Disabilità CSS QR"
+msgid "Disabilita CSS QR"
+msgstr "Désactiver CSS QR"
+
+#: includes/settings-page.php:585
+msgid ""
+"Abilitando questo campo, il CSS base del modulo Quick Reserve verrà "
+"disabilitato"
+msgstr ""
+"En activant ce champ, le CSS de base du module Quick Reserve sera désactivé."
+
+#: includes/settings-page.php:592
+msgid "Abilita banner cookie"
+msgstr "Activer la bannière des cookies"
+
+#: includes/settings-page.php:598
+msgid "Abilitando questo campo viene aggiunto il banner cookie"
+msgstr "L'activation de ce champ ajoute banner cookie"
