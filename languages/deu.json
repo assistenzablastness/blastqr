@@ -1,0 +1,127 @@
+{
+    "camere": "Zimmer",
+    "adulti": "Erwachsene",
+    "bambini": "Kinder",
+    "codice_sconto": "Rabattcode",
+    "prenota": "Buchen",
+    "apri_calendario": "Kalender öffnen",
+    "check_in": "Check-in",
+    "check_out": "Check-out",
+    "modifica_cancella_prenotazione": "Buchung ändern/stornieren",
+    "abilita_qr": {
+        "label": "QR aktivieren",
+        "info": "Durch Aktivierung dieses Feldes wird das Quick Reserve Modul auf der Website angezeigt"
+    },
+    "abilita_preview_qr": {
+        "label": "QR-Vorschau aktivieren (nur für angemeldete Benutzer)",
+        "info": "Durch Aktivierung dieses Feldes wird das Quick Reserve Modul im Testmodus angezeigt, nur für angemeldete Benutzer sichtbar"
+    },
+    "data_apertura": {
+        "label": "Eröffnungsdatum",
+        "info": "Durch Festlegung dieses Datums verwendet der Kalender es als erstes verfügbares Datum beim Öffnen"
+    },
+    "codice_sconto_fisso": "Fester Rabattcode",
+    "abilita_codice_sconto_fisso": {
+        "label": "Standard-Rabattcode aktivieren",
+        "info": "Durch Aktivierung dieses Feldes kann ein Standard-Rabattcode festgelegt werden"
+    },
+    "codice_sconto_attivo": "Festgelegter Standard-Rabattcode",
+    "visibilita_codice_sconto": {
+        "label": "Sichtbarkeit des Rabattcodes",
+        "info": "Durch Festlegung dieser Option wird der Rabattcode nur auf Desktop, nur auf Mobile oder auf beiden sichtbar sein"
+    },
+    "solo_mobile": "Nur Mobile",
+    "solo_desktop": "Nur Desktop",
+    "entrambi": "Beide",
+    "classe_qr": {
+        "label": "QR-Klasse"
+    },
+    "usa_anchor_class": {
+        "label": "QR innerhalb einer Ankerklasse verwenden",
+        "info": "Durch Aktivierung dieses Feldes wird das Quick Reserve Modul innerhalb einer Klasse angezeigt"
+    },
+    "anchor_class": {
+        "label": "Ankerklasse des QR",
+        "info": "Die Klasse, in der das Quick Reserve Modul hinzugefügt wird, wenn die Option ausgewählt wurde"
+    },
+    "shortcode": {
+        "label": "Shortcode"
+    },
+    "abilita_qr_shortcode": {
+        "label": "QR-Shortcode aktivieren",
+        "info": "Durch Aktivierung dieses Feldes wird das Quick Reserve Modul innerhalb einer Seite oder eines Beitrags mithilfe eines Shortcodes angezeigt"
+    },
+    "nome_shortcode": {
+        "label": "Shortcode-Name",
+        "info": "Name des Shortcodes, den Sie verwenden möchten, um das Quick Reserve Modul anzuzeigen"
+    },
+    "campi_form": {
+        "label": "Formularfelder",
+        "info": "Sie können die Felder auswählen, die im Quick Reserve Modul angezeigt werden sollen"
+    },
+    "colori_qr": {
+        "label": "QR-Farben",
+        "info": "Sie können die Farben des Quick Reserve Moduls anpassen"
+    },
+    "pulsante_prenota": "Buchen-Schaltfläche",
+    "testo_pulsante_prenota": "Text der Buchen-Schaltfläche",
+    "sfondo_qr": "QR-Hintergrund",
+    "pulsante_modifica_cancella": "Ändern/Stornieren-Schaltfläche",
+    "colori_calendario": {
+        "label": "Kalenderfarben",
+        "info": "Sie können die Farben des Kalenders anpassen"
+    },
+    "sfondo_calendario": "Kalenderhintergrund",
+    "testo_date_calendario": "Kalenderdatentext",
+    "background_date_selezionate_calendario": "Hintergrund der ausgewählten Daten im Kalender",
+    "testo_date_selezionate_calendario": "Text der ausgewählten Daten im Kalender",
+    "offerte": {
+        "label": "Angebote",
+        "info": "Die Funktion, die die Liste der verfügbaren Sonderangebote für die Unterkunft druckt, ist automatisch und wird aktiviert, indem Sie den Platzhalter [offerte] in die gewünschte Seite oder Stelle einfügen. Sie wird normalerweise in einer 'Angebote'-Seite eingefügt, die der Anzeige dieser Liste gewidmet ist, die sich in Echtzeit und automatisch entsprechend den auf dem Blastness-Extranet für die jeweilige Unterkunft vorhandenen Einstellungen aktualisiert."
+    },
+    "css_personalizzato": {
+        "label": "Benutzerdefiniertes CSS",
+        "info": "Fügen Sie hier Ihr benutzerdefiniertes CSS ein, das auf das Frontend angewendet wird."
+    },
+    "disabilita_css_qr": {
+        "label": "QR-CSS deaktivieren",
+        "info": "Durch Aktivierung dieses Feldes wird das Basis-CSS des Quick Reserve Moduls deaktiviert"
+    },
+    "abilita_banner_cookie": {
+        "label": "Cookie-Banner aktivieren",
+        "info": "Durch Aktivierung dieses Feldes wird das Cookie-Banner hinzugefügt"
+    },
+    "tipologia_be": {
+        "label": "BE-Typ",
+        "info": "Der BE-Typ ist ein Parameter, der von Blastness zum Zeitpunkt der Bereitstellung basierend auf dem mit dem Kunden gewählten Buchungstyp mitgeteilt wird. Bevor Sie diesen Parameter ändern, stellen Sie sicher, dass bei Blastness ein für den neuen Typ geeigneter Stil verfügbar ist."
+    },
+    "parametri_be": {
+        "label": "BE-Parameter",
+        "info": "BE-Parameter werden von Blastness bereitgestellt und sind für die korrekte Funktion des Quick Reserve Moduls erforderlich."
+    },
+    "tipologia_qr": {
+        "label": "QR-Typ",
+        "info": "Full-Width: Buchungsleiste in voller Breite. Box: Buchungsbox."
+    },
+    "posizione_qr_full_width": {
+        "label": "QR Full-Width Position",
+        "info": "Durch Festlegung der Werte in den Feldern können Sie die Position des Quick Reserve Moduls bestimmen. Wenn Sie das Feld 'Left' leer lassen und einen Wert im Feld 'Right' festlegen, wird das Modul rechts positioniert; umgekehrt, wenn Sie das Feld 'Right' leer lassen und einen Wert im Feld 'Left' festlegen, wird das Modul links positioniert. Ebenso können Sie durch Festlegung von 'Top' und 'Bottom' die vertikale Position des Moduls bestimmen"
+    },
+    "posizione_qr_box": {
+        "label": "QR Box Position",
+        "info": "Durch Festlegung der Werte in den Feldern können Sie die Position des Quick Reserve Moduls bestimmen. Wenn Sie das Feld 'Left' leer lassen und einen Wert im Feld 'Right' festlegen, wird das Modul rechts positioniert; umgekehrt, wenn Sie das Feld 'Right' leer lassen und einen Wert im Feld 'Left' festlegen, wird das Modul links positioniert. Ebenso können Sie durch Festlegung von 'Top' und 'Bottom' die vertikale Position des Moduls bestimmen"
+    },
+    "top": "Oben",
+    "bottom": "Unten",
+    "left": "Links",
+    "right": "Rechts",
+    "prenota_label": "Buchen",
+    "apri_calendario_placeholder": "Kalender öffnen",
+    "check_in_label": "Check-in",
+    "check_out_label": "Check-out",
+    "codice_sconto_placeholder": "Rabattcode",
+    "impostazioni_modulo_qr_blastness": "Einstellungen des Blastness QR Moduls",
+    "non_ci_sono_offerte_disponibili": "Es sind keine Angebote verfügbar.",
+    "impostazioni_salvate": "Einstellungen gespeichert.",
+    "si_e_verificato_un_errore_riprova": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+}

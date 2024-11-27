@@ -3,6 +3,8 @@
 // Funzione per aggiungere il form nel body
 function aggiungi_form_html() {
     global $blastqr_lingua_int;
+    $translations = blastqr_get_translations();
+
     // Recupera i valori dalle opzioni salvate
     $id_albergo = get_option('blastqr_id_albergo', '');
     $id_stile = get_option('blastqr_id_stile', '');
@@ -18,6 +20,7 @@ function aggiungi_form_html() {
     $enable_fixed_discount_code = get_option('blastqr_enable_fixed_discount_code', 0);
     $fixed_discount_code = get_option('blastqr_fixed_discount_code', '');
     $discount_code_visibility = get_option('blastqr_discount_code_visibility', 'both');
+    $data_apertura = get_option('blastqr_data_apertura', '');
 
     if (!function_exists('generate_options')) {
         function generate_options($max, $default_value) {
@@ -34,30 +37,30 @@ function aggiungi_form_html() {
     // Array associativo per i campi del form
     $form_fields = [
         'rooms' => [
-            'label' => 'Camere',
-            'html' => '<div class="qr_item">' . __('Camere', 'blastqr') . ': <span id="numero_camere"></span>
+            'label' => $translations['camere'],
+            'html' => '<div class="qr_item">' . $translations['camere'] . ': <span id="numero_camere"></span>
                         <select id="tot_camere" name="tot_camere" class="qr_item__select">' . generate_options(9, 1) . '</select>
                     </div>',
             'option' => get_option('blastqr_show_rooms', 1),
         ],
         'adults' => [
-            'label' => 'Adulti',
-            'html' => '<div class="qr_item">' . __('Adulti', 'blastqr') . ': <span id="numero_adulti"></span>
+            'label' => $translations['adulti'],
+            'html' => '<div class="qr_item">' . $translations['adulti'] . ': <span id="numero_adulti"></span>
                         <select id="tot_adulti" name="tot_adulti" class="qr_item__select">' . generate_options(9, 2) . '</select>
                     </div>',
             'option' => get_option('blastqr_show_adults', 1),
         ],
         'children' => [
-            'label' => 'Bambini',
-            'html' => '<div class="qr_item">' . __('Bambini', 'blastqr') . ': <span id="numero_bambini"></span>
+            'label' => $translations['bambini'],
+            'html' => '<div class="qr_item">' . $translations['bambini'] . ': <span id="numero_bambini"></span>
                         <select id="tot_bambini" name="tot_bambini" class="qr_item__select">' . generate_options(9, 0) . '</select>
                     </div>',
             'option' => get_option('blastqr_show_children', 1),
         ],
         'discount_code' => [
-            'label' => 'Codice sconto',
+            'label' => $translations['codice_sconto'],
             'html' => '<div class="qr_item">
-                        <input type="text" placeholder="'. __("Codice sconto", 'blastqr') .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" />
+                        <input type="text" placeholder="'. $translations['codice_sconto'] .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" />
                     </div>',
             'option' => get_option('blastqr_show_discount_code', 1),
         ]
@@ -100,7 +103,7 @@ function aggiungi_form_html() {
     if($enable_fixed_discount_code && ($discount_code_visibility == 'desktop' || $discount_code_visibility == 'both')){
         if($form_fields['discount_code']['option'] == 1){
             $form_fields['discount_code']['html'] = '<div class="qr_item">
-                        <input type="text" placeholder="'. __("Codice sconto", 'blastqr') .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" value="'.$fixed_discount_code.'" />
+                        <input type="text" placeholder="'. $translations['codice_sconto_placeholder'] .'" id="generic_codice" name="generic_codice" class="qr_item__sconto" value="'.$fixed_discount_code.'" />
                     </div>';
         } else{
             $generic_codice_desktop = '<input type="hidden" id="generic_codice" name="generic_codice" value="'.$fixed_discount_code.'"/>';
@@ -113,7 +116,7 @@ function aggiungi_form_html() {
 
         // Form HTML
         $form_html = '
-        <a class="prenota' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) .'" href="'. $prenota_diretto. $generic_codice_mobile .'">'. __('Prenota', 'blastqr').'</a>
+        <a class="prenota' . esc_attr($add_into_class) . esc_attr($add_to_shortcode) .'" href="'. $prenota_diretto. $generic_codice_mobile .'">'. $translations['prenota'] .'</a>
         <form class="blast_qr_form '. $sconto_height ." " . $tipo_qr .' '. esc_attr($add_into_class) . esc_attr($add_to_shortcode) . '" action="' . esc_url($form_action) . '" id="qr-form" method="get" target="">
             <input type="hidden" id="id_stile" class="stile" name="id_stile" value="' . esc_attr($id_stile) . '"/>
             <input type="hidden" id="id_albergo" class="albergo" name="id_albergo" value="' . esc_attr($id_albergo) . '"/>
@@ -127,14 +130,14 @@ function aggiungi_form_html() {
         
             <div class="qr_container '. $tipo_qr .'">
                 <div class="qr_item__calendar">
-                    <input type="text" placeholder="'. __("Apri calendario", 'blastqr') .'" readOnly id="dario" class="qr_item__calendar__input" />
+                    <input type="text" placeholder="'. $translations['apri_calendario_placeholder'] .'" readOnly id="dario" data-mindate="'. $data_apertura . '" class="qr_item__calendar__input" />
                     <div class="qr_item__calendar__book_dates">
                         <div class="qr_item__calendar__dates__element">
-                            <div class="qr_item__calendar__dates__element__arrive">'. __('Check-in', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__arrive">'. $translations['check_in_label'] .'</div>
                             <div class="qr_item__calendar__dates__element__arrive__data-numero" id="data-arrivo"></div>     
                         </div>
                         <div class="layover-prenota__cont__form__list__row__calendari__element">
-                            <div class="qr_item__calendar__dates__element__departure">'. __('Check-out', 'blastqr') .'</div>
+                            <div class="qr_item__calendar__dates__element__departure">'. $translations['check_out_label'] .'</div>
                             <div class="qr_item__calendar__dates__element__departure__data-numero" id="data-partenza"></div>      
                         </div>
                     </div>
@@ -149,9 +152,9 @@ function aggiungi_form_html() {
 
         $form_html .= '
                 <div class="qr_item__submit">
-                    <input type="submit" class="qr_item__item__button-submit" value="'. __('Prenota', 'blastqr') .'">
+                    <input type="submit" class="qr_item__item__button-submit" value="'. $translations['prenota'] .'">
                 </div>
-                <a class="modifica" href="'. esc_url($modifica_cancella_link) .'">'. __('Modifica/Cancella prenotazione', 'blastqr') .'</a>
+                <a class="modifica" href="'. esc_url($modifica_cancella_link) .'">'. $translations['modifica_cancella_prenotazione'] .'</a>
             </div>
         </form>';
 

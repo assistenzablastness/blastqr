@@ -1,0 +1,127 @@
+{
+    "camere": "Chambres",
+    "adulti": "Adultes",
+    "bambini": "Enfants",
+    "codice_sconto": "Code de réduction",
+    "prenota": "Réserver",
+    "apri_calendario": "Ouvrir le calendrier",
+    "check_in": "Arrivée",
+    "check_out": "Départ",
+    "modifica_cancella_prenotazione": "Modifier/Annuler la réservation",
+    "abilita_qr": {
+        "label": "Activer QR",
+        "info": "En activant ce champ, le module Quick Reserve sera affiché sur le site web"
+    },
+    "abilita_preview_qr": {
+        "label": "Activer l'aperçu QR (Seulement pour les utilisateurs connectés)",
+        "info": "En activant ce champ, le module Quick Reserve sera affiché en mode test, visible uniquement par les utilisateurs connectés"
+    },
+    "data_apertura": {
+        "label": "Date d'ouverture",
+        "info": "En définissant cette date, le calendrier l'utilisera comme première date disponible à l'ouverture"
+    },
+    "codice_sconto_fisso": "Code de Réduction Fixe",
+    "abilita_codice_sconto_fisso": {
+        "label": "Activer le Code de Réduction par Défaut",
+        "info": "En activant ce champ, un code de réduction par défaut peut être défini"
+    },
+    "codice_sconto_attivo": "Code de réduction par défaut défini",
+    "visibilita_codice_sconto": {
+        "label": "Visibilité du Code de Réduction",
+        "info": "En définissant cette option, le code de réduction sera visible uniquement sur le bureau, uniquement sur mobile ou sur les deux"
+    },
+    "solo_mobile": "Mobile Seulement",
+    "solo_desktop": "Bureau Seulement",
+    "entrambi": "Les deux",
+    "classe_qr": {
+        "label": "Classe QR"
+    },
+    "usa_anchor_class": {
+        "label": "Utiliser QR dans une classe d'ancrage",
+        "info": "En activant ce champ, le module Quick Reserve sera affiché dans une classe"
+    },
+    "anchor_class": {
+        "label": "Classe d'ancrage du QR",
+        "info": "La classe dans laquelle le module Quick Reserve est ajouté, si l'option a été sélectionnée"
+    },
+    "shortcode": {
+        "label": "Shortcode"
+    },
+    "abilita_qr_shortcode": {
+        "label": "Activer le Shortcode QR",
+        "info": "En activant ce champ, le module Quick Reserve sera affiché dans une page ou un article en utilisant un shortcode"
+    },
+    "nome_shortcode": {
+        "label": "Nom du Shortcode",
+        "info": "Nom du shortcode que vous souhaitez utiliser pour afficher le module Quick Reserve"
+    },
+    "campi_form": {
+        "label": "Champs du Formulaire",
+        "info": "Vous pouvez choisir les champs à afficher dans le module Quick Reserve"
+    },
+    "colori_qr": {
+        "label": "Couleurs QR",
+        "info": "Vous pouvez personnaliser les couleurs du module Quick Reserve"
+    },
+    "pulsante_prenota": "Bouton Réserver",
+    "testo_pulsante_prenota": "Texte du Bouton Réserver",
+    "sfondo_qr": "Fond QR",
+    "pulsante_modifica_cancella": "Bouton Modifier/Annuler",
+    "colori_calendario": {
+        "label": "Couleurs du Calendrier",
+        "info": "Vous pouvez personnaliser les couleurs du calendrier"
+    },
+    "sfondo_calendario": "Fond du calendrier",
+    "testo_date_calendario": "Texte des dates du calendrier",
+    "background_date_selezionate_calendario": "Fond des dates sélectionnées dans le calendrier",
+    "testo_date_selezionate_calendario": "Texte des dates sélectionnées dans le calendrier",
+    "offerte": {
+        "label": "Offres",
+        "info": "La fonctionnalité qui imprime la liste des offres spéciales disponibles pour la propriété est automatique et est activée en insérant l'espace réservé [offerte] dans la page ou l'emplacement souhaité. Il est généralement inséré dans une page 'Offres' dédiée à l'affichage de cette liste, qui se met à jour en temps réel et automatiquement selon les paramètres présents sur l'extranet de Blastness pour la propriété respective."
+    },
+    "css_personalizzato": {
+        "label": "CSS Personnalisé",
+        "info": "Insérez ici votre CSS personnalisé qui sera appliqué au frontend."
+    },
+    "disabilita_css_qr": {
+        "label": "Désactiver le CSS QR",
+        "info": "En activant ce champ, le CSS de base du module Quick Reserve sera désactivé"
+    },
+    "abilita_banner_cookie": {
+        "label": "Activer la Bannière Cookie",
+        "info": "En activant ce champ, la bannière de cookie sera ajoutée"
+    },
+    "tipologia_be": {
+        "label": "Type BE",
+        "info": "Le type BE est un paramètre communiqué par Blastness au moment de la fourniture, basé sur le type de réservation choisi avec le client. Avant de modifier ce paramètre, assurez-vous avec Blastness qu'un style adapté au nouveau type est disponible."
+    },
+    "parametri_be": {
+        "label": "Paramètres BE",
+        "info": "Les paramètres BE sont fournis par Blastness et sont nécessaires au bon fonctionnement du module Quick Reserve."
+    },
+    "tipologia_qr": {
+        "label": "Type QR",
+        "info": "Full-Width : barre de réservation en pleine largeur. Box : boîte de réservation."
+    },
+    "posizione_qr_full_width": {
+        "label": "Position QR Full-Width",
+        "info": "En définissant les valeurs dans les champs, vous pouvez déterminer la position du module Quick Reserve. En laissant le champ 'Left' vide et en définissant une valeur dans le champ 'Right', le module sera positionné à droite ; inversement, si vous laissez le champ 'Right' vide et définissez une valeur dans le champ 'Left', le module sera positionné à gauche. De même, en définissant 'Top' et 'Bottom', vous pouvez déterminer la position verticale du module"
+    },
+    "posizione_qr_box": {
+        "label": "Position QR Box",
+        "info": "En définissant les valeurs dans les champs, vous pouvez déterminer la position du module Quick Reserve. En laissant le champ 'Left' vide et en définissant une valeur dans le champ 'Right', le module sera positionné à droite ; inversement, si vous laissez le champ 'Right' vide et définissez une valeur dans le champ 'Left', le module sera positionné à gauche. De même, en définissant 'Top' et 'Bottom', vous pouvez déterminer la position verticale du module"
+    },
+    "top": "Haut",
+    "bottom": "Bas",
+    "left": "Gauche",
+    "right": "Droite",
+    "prenota_label": "Réserver",
+    "apri_calendario_placeholder": "Ouvrir le calendrier",
+    "check_in_label": "Arrivée",
+    "check_out_label": "Départ",
+    "codice_sconto_placeholder": "Code de réduction",
+    "impostazioni_modulo_qr_blastness": "Paramètres du Module QR Blastness",
+    "non_ci_sono_offerte_disponibili": "Il n'y a pas d'offres disponibles.",
+    "impostazioni_salvate": "Paramètres enregistrés.",
+    "si_e_verificato_un_errore_riprova": "Une erreur s'est produite. Veuillez réessayer."
+}

@@ -33,25 +33,27 @@ function blastqr_admin_enqueue_scripts($hook) {
 
 // Funzione per creare la pagina di impostazioni
 function blastqr_settings_page() {
+        $translations = blastqr_get_translations();
+
         // Definisci i campi del form come array
         $form_fields = [
             'rooms' => [
-                'label' => 'Camere',
+                'label' => $translations['camere'],
                 'key' => 'blastqr_show_rooms',
                 'value' => 1
             ],
             'adults' => [
-                'label' => 'Adulti',
+                'label' => $translations['adulti'],
                 'key' => 'blastqr_show_adult',
                 'value' => 1
             ],
             'children' => [
-                'label' => 'Bambini',
+                'label' => $translations['bambini'],
                 'key' => 'blastqr_show_children',
                 'value' => 1
             ],
             'discount_code' => [
-                'label' => 'Codice Sconto',
+                'label' => $translations['codice_sconto'],
                 'key' => 'blastqr_show_discount_code',
                 'value' => 1
             ]
@@ -59,22 +61,22 @@ function blastqr_settings_page() {
     
         $color_fields = [
             'button_color' => [
-                'label' => 'Pulsante Prenota',
+                'label' => $translations['pulsante_prenota'],
                 'key' => 'blastqr_button_color',
                 'color' => '#ffffff'
             ],
             'button_text_color' => [
-                'label' => 'Testo Pulsante Prenota',
+                'label' => $translations['testo_pulsante_prenota'],
                 'key' => 'blastqr_button_text_color',
                 'color' => '#000000'
             ],
             'qr_background_color' => [
-                'label' => 'Sfondo Qr',
+                'label' => $translations['sfondo_qr'],
                 'key' => 'blastqr_qr_background_color',
                 'color' => '#000000'
             ],
             'modify_cancel_color' => [
-                'label' => 'Pulsante Modifica/Cancella',
+                'label' =>  $translations['pulsante_modifica_cancella'],
                 'key' => 'blastqr_modify_cancel_color',
                 'color' => '#ffffff'
             ],
@@ -82,22 +84,22 @@ function blastqr_settings_page() {
         
         $color_calendar = [
             'calendario_sfondo' => [
-                'label' => 'Sfondo calendario',
+                'label' => $translations['sfondo_calendario'],
                 'key' => 'blastqr_calendario_sfondo',
                 'color' => '#ffffff'
             ],
             'calendario_text' => [
-                'label' => 'Testo date calendario',
+                'label' => $translations['testo_date_calendario'],
                 'key' => 'blastqr_calendario_text',
                 'color' => '#000000'
             ],
             'sfondo_seleziona_date' => [
-                'label' => 'Background date selezionate calendario',
+                'label' => $translations['background_date_selezionate_calendario'],
                 'key' => 'blastqr_sfondo_seleziona_date',
                 'color' => '#000000'
             ],            
             'text_seleziona_date' => [
-                'label' => 'Testo date selezionate calendario',
+                'label' => $translations['testo_date_selezionate_calendario'],
                 'key' => 'blastqr_text_seleziona_date',
                 'color' => '#ffffff'
             ]
@@ -138,7 +140,7 @@ function blastqr_settings_page() {
         update_option('blastqr_enable_fixed_discount_code', isset($_POST['enable_fixed_discount_code']) ? 1 : 0);
         update_option('blastqr_fixed_discount_code', sanitize_text_field($_POST['fixed_discount_code']));
         update_option('blastqr_discount_code_visibility', sanitize_text_field($_POST['discount_code_visibility']));
-
+        update_option('blastqr_data_apertura', sanitize_text_field($_POST['data_apertura']));
 
         // Salva le impostazioni dei campi
         foreach ($form_fields as $key => $field) {
@@ -171,7 +173,7 @@ function blastqr_settings_page() {
         }
 
 
-        echo '<div class="updated"><p>Impostazioni salvate.</p></div>';
+        echo '<div class="updated"><p>'.$translations['impostazioni_salvate'].'</p></div>';
     }
 
     
@@ -193,6 +195,7 @@ function blastqr_settings_page() {
     $enable_fixed_discount_code = get_option('blastqr_enable_fixed_discount_code', 0);
     $fixed_discount_code = get_option('blastqr_fixed_discount_code', '');
     $discount_code_visibility = get_option('blastqr_discount_code_visibility', 'both');
+    $data_apertura = get_option('blastqr_data_apertura', '');
 
     $fullwidth_positions = [
         'top' => get_option('blastqr_fullwidth_top', 'unset'),
@@ -210,22 +213,22 @@ function blastqr_settings_page() {
 
     $form_fields = [
         'rooms' => [
-            'label' => 'Camere',
+            'label' => $translations['camere'],
             'key' => 'blastqr_show_rooms',
             'value' => get_option('blastqr_show_rooms', 1) 
         ],
         'adults' => [
-            'label' => 'Adulti',
+            'label' => $translations['adulti'],
             'key' => 'blastqr_show_adults',
             'value' => get_option('blastqr_show_adults', 1)
         ],
         'children' => [
-            'label' => 'Bambini',
+            'label' => $translations['bambini'],
             'key' => 'blastqr_show_children',
             'value' => get_option('blastqr_show_children', 1)
         ],
         'discount_code' => [
-            'label' => 'Codice Sconto',
+            'label' => $translations['codice_sconto'],
             'key'=> 'blastqr_show_discount_code',
             'value' => get_option('blastqr_show_discount_code', 0)
         ]
@@ -233,22 +236,22 @@ function blastqr_settings_page() {
 
     $color_fields = [
         'button_color' => [
-            'label' => 'Pulsante Prenota',
+            'label' => $translations['pulsante_prenota'],
             'key' => 'blastqr_button_color',
             'color' => get_option('blastqr_button_color', '#ffffff')
         ],
         'button_text_color' => [
-            'label' => 'Testo Pulsante Prenota',
+            'label' => $translations['testo_pulsante_prenota'],
             'key' => 'blastqr_button_text_color',
             'color' => get_option('blastqr_button_text_color', '#000000')
         ],
         'qr_background_color' => [
-            'label' => 'Sfondo Qr',
+            'label' => $translations['sfondo_qr'],
             'key' => 'blastqr_qr_background_color',
             'color' => get_option('blastqr_qr_background_color', '#000000')
         ],
         'modify_cancel_color' => [
-            'label' => 'Pulsante Modifica/Cancella',
+            'label' => $translations['pulsante_modifica_cancella'],
             'key' => 'blastqr_modify_cancel_color',
             'color' => get_option('blastqr_modify_cancel_color', '#ffffff')
         ],
@@ -256,22 +259,22 @@ function blastqr_settings_page() {
 
     $color_calendar = [
         'calendario_sfondo' => [
-            'label' => 'Sfondo calendario',
+            'label' => $translations['sfondo_calendario'],
             'key' => 'blastqr_calendario_sfondo',
             'color' => get_option('blastqr_calendario_sfondo', '#ffffff')
         ],
         'calendario_text' => [
-            'label' => 'Testo date calendario',
+            'label' => $translations['testo_date_calendario'],
             'key' => 'blastqr_calendario_text',
             'color' => get_option('blastqr_calendario_text', '#000000')
         ],
         'sfondo_seleziona_date' => [
-            'label' => 'Background date selezionate calendario',
+            'label' => $translations['background_date_selezionate_calendario'],
             'key' => 'blastqr_sfondo_seleziona_date',
             'color' => get_option('blastqr_sfondo_seleziona_date', '#000000')
         ],            
         'text_seleziona_date' => [
-            'label' => 'Testo date selezionate calendario',
+            'label' => $translations['testo_date_selezionate_calendario'],
             'key' => 'blastqr_text_seleziona_date',
             'color' => get_option('blastqr_text_seleziona_date', '#ffffff')
         ]
@@ -279,11 +282,11 @@ function blastqr_settings_page() {
 
     ?>
     <div class="wrap">
-        <h1>Impostazioni modulo QR Blastness</h1>
+        <h1><?php echo esc_html($translations['impostazioni_modulo_qr_blastness']); ?></h1>
         <form method="post" action="#">
             <table class="form-table">
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Tipologia BE</th>
+                    <th scope="row" style="color: #E11997"><?php echo esc_html($translations['tipologia_be']['label']); ?></th>
                     <td>
                         <select name="action_type">
                             <option value="premium" <?php selected($action_type, 'premium'); ?>>Premium</option>
@@ -292,40 +295,40 @@ function blastqr_settings_page() {
                         <div class="question tipo_be">
                         <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                            <?= __('Questa voce viene comunicata da Blastness al momento della fornitura, in base alla tipologia di booking scelta insieme al cliente. Prima di modificare questo parametro accertarsi con Blastness della presenza di uno stile adatto alla nuova tipologia.', 'blastqr') ?>
+                            <?= $translations['tipologia_be']['info']; ?>
                         </div>
                     </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Parametri BE') ?></th>
+                    <th scope="row" style="color: #E11997"><?php echo esc_html($translations['parametri_be']['label']); ?></th>
                     <td>
                         <div style="display: flex; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="id_albergo"><?= __('ID Albergo', 'blastqr')  ?></label>
+                                <label for="id_albergo">ID Albergo</label>
                                 <input style="border: 1px solid #E11997" type="text" name="id_albergo" value="<?php echo esc_attr($id_albergo); ?>" />
                             </div>
                             
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="id_stile"><?= __('ID Stile', 'blastqr') ?></label>
+                                <label for="id_stile">ID Stile</label>
                                 <input style="border: 1px solid #E11997" type="text" name="id_stile" value="<?php echo esc_attr($id_stile); ?>" />
                             </div>
 
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="dc"><?= __('DC', 'blastqr') ?></label>
+                                <label for="dc">DC</label>
                                 <input style="border: 1px solid #E11997" type="text" name="dc" value="<?php echo esc_attr($dc); ?>" />
                             </div>
                         </div>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Questi parametri vengono forniti da Blastness e sono necessari per il corretto funzionamento del modulo Quick Reserve', 'blastqr') ?>
+                                <?= $translations['parametri_be']['info']; ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Tipologia QR', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?php echo esc_html($translations['tipologia_qr']['label']); ?></th>
                     <td>
                         <select name="type_qr">
                             <option value="full-width" <?php selected($tipo_qr, 'full-width'); ?>>Full Width</option>
@@ -334,13 +337,13 @@ function blastqr_settings_page() {
                         <div class="question tipo_be">
                         <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                            <?= __('Tipologia QR', 'blastqr') ?>
+                            <?php echo $translations['tipologia_qr']['info']; ?>
                         </div>
                     </div>
                     </td>
                 </tr>
                 <tr valign="top" class="position-settings" id="position-full-width">
-                    <th scope="row" style="color: #E11997"><?= __('Posizione QR Full-Width', 'blastqr')?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['posizione_qr_full_width']['label']?></th>
                     <td>
                         <label for="fullwidth_top">Top:</label>
                         <input type="number" name="fullwidth_top" value="<?php echo esc_attr($fullwidth_positions['top']); ?>" />
@@ -353,13 +356,13 @@ function blastqr_settings_page() {
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                               <?= __(' Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo "Left" e impostando un valore nel campo "Right" il modulo verrà posizionato a destra, viceversa se si lascia vuoto il campo "Right" e si imposta un valore nel campo "Left" il modulo verrà posizionato a sinistra. Allo stesso modo impostando "Top" e "Bottom" si può determinare la posizione verticale del modulo.', 'blastqr') ?>
+                               <?= $translations['posizione_qr_full_width']['info'] ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top" class="position-settings" id="position-box">
-                    <th scope="row" style="color: #E11997"><?= __('Posizione QR Box', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['posizione_qr_box']['label'] ?></th>
                     <td>
                         <label for="box_top">Top:</label>
                         <input type="number" name="box_top" value="<?php echo esc_attr($box_positions['top']); ?>" />
@@ -372,64 +375,76 @@ function blastqr_settings_page() {
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo "Left" e impostando un valore nel campo "Right" il modulo verrà posizionato a destra discostando il box dal bordo destro dello stesso numero di px impostati nel valore relativo. Viceversa se si lascia vuoto il campo "Right" e si imposta un valore nel campo "Left" il modulo verrà posizionato a sinistra con la distanza dal bordo impostata. Allo stesso modo impostando "Top" e "Bottom" si può determinare la posizione verticale del modulo.', 'blastqr') ?>
+                                <?= $translations['posizione_qr_box']['info'] ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Abilita QR','blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['abilita_qr']['label'] ?></th>
                     <td>
                         <input type="checkbox" name="enable_qr" value="1" <?php checked($enable_qr, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato sul sito web.', 'blastqr') ?>
+                                <?= $translations['abilita_qr']['info'] ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Abilita Preview QR (Solo per utenti loggati)', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['abilita_preview_qr']['label'] ?></th>
                     <td>
                         <input type="checkbox" name="enable_qr_preview" value="1" <?php checked($enable_qr_preview, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità di prova, visibile solamente per gli utenti loggati.', 'blastqr') ?>
+                                <?= $translations['abilita_preview_qr']['info'] ?>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr align="top">
+                    <th scope="row" style="color: #E11997"><?= $translations['data_apertura']['label'] ?></th>
+                    <td>
+                        <input type="date" name="data_apertura" value="<?php echo esc_attr($data_apertura); ?>">
+                        <div class="question abilita_qr">
+                            <i class="far fa-question-circle"></i>
+                            <div class="question__text">
+                                <?= $translations['data_apertura']['info'] ?>
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Codice Sconto Fisso', 'blastqr')?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['codice_sconto_fisso'] ?></th>
                     <td>
                         <div style="display: flex; align-items: center; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="enable_fixed_discount_code"><?= __('Abilita codice sconto fisso', 'blastqr') ?></label>
+                                <label for="enable_fixed_discount_code"><?= $translations['abilita_codice_sconto_fisso']['label'] ?></label>
                                 <input type="checkbox" name="enable_fixed_discount_code" value="1" <?php checked($enable_fixed_discount_code, 1); ?>>
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __('Abilitando questo campo, può essere impostato un codice sconto di default', 'blastqr') ?>
+                                        <?= $translations['abilita_codice_sconto_fisso']['info'] ?>
                                     </div>
                                 </div>
                             </div>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="fixed_discount_code"><?= __('Codice sconto attivo:','blastqr') ?></label>
+                                <label for="fixed_discount_code"><?= $translations['codice_sconto_attivo'] ?></label>
                                 <input type="text" name="fixed_discount_code" value="<?php echo esc_attr($fixed_discount_code); ?>" />
                             </div>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                            <label for="discount_code_visibility"><?= __('Visibilità Codice Sconto', 'blastqr') ?></label>
+                            <label for="discount_code_visibility"><?= $translations['visibilita_codice_sconto']['label'] ?></label>
                             <select name="discount_code_visibility">
-                                <option value="mobile" <?php selected($discount_code_visibility, 'mobile'); ?>><?= __('Solo Mobile', 'blastqr') ?></option>
-                                <option value="desktop" <?php selected($discount_code_visibility, 'desktop'); ?>><?= __('Solo Desktop', 'blastqr') ?></option>
-                                <option value="both" <?php selected($discount_code_visibility, 'both'); ?>><?= __('Entrambi', 'blastqr') ?></option>
+                                <option value="mobile" <?php selected($discount_code_visibility, 'mobile'); ?>><?= $translations['solo_mobile'] ?></option>
+                                <option value="desktop" <?php selected($discount_code_visibility, 'desktop'); ?>><?= $translations['solo_desktop'] ?></option>
+                                <option value="both" <?php selected($discount_code_visibility, 'both'); ?>><?= $translations['entrambi'] ?></option>
                             </select>
                             <div class="question abilita_qr">
                                 <i class="far fa-question-circle"></i>
                                 <div class="question__text">
-                                    <?= __('Il codice sconto può essere impostato per essere sia visibile da desktop / mobile', 'blastqr') ?>
+                                    <?= $translations['visibilita_codice_sconto']['info'] ?>
                                 </div>
                             </div>
                             </div>
@@ -438,27 +453,27 @@ function blastqr_settings_page() {
                 </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Classe QR','blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['classe_qr']['label'] ?></th>
                     <td>
                         <div style="display: flex; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="use_anchor_class"><?= __("Usa QR all'interno di una classe di ancoraggio", 'blastqr') ?></label>
+                                <label for="use_anchor_class"><?= $translations['usa_anchor_class']['label'] ?></label>
                                 <input type="checkbox" name="use_anchor_class" value="1" <?php checked($use_anchor_class, 1); ?>>
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __("Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di un classe", 'blastqr') ?>
+                                        <?= $translations['usa_anchor_class']['info'] ?>
                                     </div>
                                 </div>
                             </div>
                 
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="anchor_class"><?= __('Classe di ancoraggio del QR', 'blastqr') ?></label>
+                                <label for="anchor_class"><?= $translations['anchor_class']['label'] ?></label>
                                 <input style="border: 1px solid #E11997" type="text" name="anchor_class" value="<?php echo esc_attr($anchor_class); ?>" />
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __("La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se l'opzione è stata selezionata", 'blastqr') ?>
+                                        <?= $translations['anchor_class']['info'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -470,26 +485,26 @@ function blastqr_settings_page() {
                 </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997">Shortcode</th>
+                    <th scope="row" style="color: #E11997"><?= $translations['shortcode']['label'] ?></th>
                     <td>
                         <div style="display: flex; align-items: center; gap: 20px">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                                <label for="enable_qr_shortcode"><?= __('Abilita QR tramite Shortcode', 'blastqr') ?></label>
+                                <label for="enable_qr_shortcode"><?= $translations['abilita_qr_shortcode']['label'] ?></label>
                                 <input type="checkbox" name="enable_qr_shortcode" value="1" <?php checked($enable_qr_shortcode, 1); ?>>
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                       <?= __('Abilitando questo campo, il modulo Quick Reserve verrà mostrato all\'interno di una pagina o di un post utilizzando uno shortcode', 'blastqr') ?>
+                                       <?= $translations['abilita_qr_shortcode']['info'] ?>
                                     </div>
                                 </div>
                             </div>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">  
-                                <label for="shortcode_name"><?= __('Nome dello shortcode', 'blastqr') ?></label>
+                                <label for="shortcode_name"><?= $translations['nome_shortcode']['label'] ?></label>
                                 <input style="border: 1px solid #E11997" type="text" name="shortcode_name" value="<?php echo esc_attr($shortcode_name); ?>" />
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __('Nome dello shortcode che desideri utilizzare', 'blastqr') ?>
+                                        <?= $translations['nome_shortcode']['info'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -503,7 +518,7 @@ function blastqr_settings_page() {
                 <!-- Campi del form -->
 
                     <tr valign="top">
-                        <th scope="row" style="color: #E11997"><?= __('Campi form', 'blastqr') ?></th>
+                        <th scope="row" style="color: #E11997"><?= $translations['campi_form']['label'] ?></th>
                         <td>
                             <div>
                             <?php foreach ($form_fields as $key => $field): ?>
@@ -513,7 +528,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __("Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve", 'blastqr') ?>
+                                        <?= $translations['campi_form']['info'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -525,7 +540,7 @@ function blastqr_settings_page() {
                 <!-- Campi per i selettori di colore -->
     
                     <tr valign="top">
-                        <th scope="row" style="color: #E11997"><?= __('Colori QR', 'blastqr') ?></th>
+                        <th scope="row" style="color: #E11997"><?= $translations['colori_qr']['label'] ?></th>
                         <td>
                             <div>
                             <?php foreach ($color_fields as $key => $field): ?>
@@ -535,7 +550,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __('Colori del modulo Quick Reserve', 'blastqr') ?>
+                                        <?= $translations['colori_qr']['info'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -543,7 +558,7 @@ function blastqr_settings_page() {
                     </tr>
 
                     <tr valign="top">
-                        <th scope="row" style="color: #E11997"><?= __('Colori calendarioo', 'blastqr') ?></th>
+                        <th scope="row" style="color: #E11997"><?= $translations['colori_calendario']['label'] ?></th>
                         <td>
                             <div>
                             <?php foreach ($color_calendar as $key => $field): ?>
@@ -553,7 +568,7 @@ function blastqr_settings_page() {
                                 <div class="question abilita_qr">
                                     <i class="far fa-question-circle"></i>
                                     <div class="question__text">
-                                        <?= __('Colori del calendario', 'blastqr') ?>
+                                        <?= $translations['colori_calendario']['info'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -561,41 +576,40 @@ function blastqr_settings_page() {
                     </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Offerte', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['offerte']['label'] ?></th>
                     <td>
-                        <div style="border:1px solid #E11997; padding:10px; width:70%; border-radius:5px;"><?= __("La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è atutomatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto <b>[offerte]</b><br />
-                        Solitamente viene inserito in una pagina 'Offerte' adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di blastness per la relativa struttura ricettiva.", 'blastqr'); ?></div>
+                        <div style="border:1px solid #E11997; padding:10px; width:70%; border-radius:5px;"><?= $translations['offerte']['info'] ?></div>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('CSS Personalizzato', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['css_personalizzato']['label'] ?></th>
                     <td>
                         <textarea name="custom_css" rows="10" cols="50" class="large-text"><?php echo stripslashes(esc_html($custom_css)); ?></textarea>
-                        <p class="description"><?= __('Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend.', 'blastqr') ?></p>
+                        <p class="description"><?= $translations['css_personalizzato']['info'] ?></p>
                     </td>
                 </tr>
                  
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Disabilita CSS QR', 'blastqr') ?></th>
+                        <th scope="row" style="color: #E11997"><?= $translations['disabilita_css_qr']['label'] ?></th>
                     <td>
                         <input type="checkbox" name="disable_base_css" value="1" <?php checked($disable_base_css, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Abilitando questo campo, il CSS base del modulo Quick Reserve verrà disabilitato', 'blastqr') ?>
+                                <?= $translations['disabilita_css_qr']['info'] ?>
                             </div>
                         </div>
                     </td>
                 </tr>
 
                 <tr valign="top">
-                    <th scope="row" style="color: #E11997"><?= __('Abilita banner cookie', 'blastqr') ?></th>
+                    <th scope="row" style="color: #E11997"><?= $translations['abilita_banner_cookie']['label'] ?></th>
                     <td>
                         <input type="checkbox" name="enable_cookie" value="1" <?php checked($enable_cookie, 1); ?>>
                         <div class="question abilita_qr">
                             <i class="far fa-question-circle"></i>
                             <div class="question__text">
-                                <?= __('Abilitando questo campo viene aggiunto il banner cookie','blastqr') ?>
+                                <?= $translations['abilita_banner_cookie']['info'] ?>
                             </div>
                         </div>
                     </td>

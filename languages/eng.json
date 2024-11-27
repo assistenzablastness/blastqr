@@ -1,0 +1,127 @@
+{
+    "camere": "Rooms",
+    "adulti": "Adults",
+    "bambini": "Children",
+    "codice_sconto": "Discount code",
+    "prenota": "Book",
+    "apri_calendario": "Open calendar",
+    "check_in": "Check-in",
+    "check_out": "Check-out",
+    "modifica_cancella_prenotazione": "Modify/Cancel reservation",
+    "abilita_qr": {
+        "label": "Enable QR",
+        "info": "By enabling this field, the Quick Reserve module will be displayed on the website"
+    },
+    "abilita_preview_qr": {
+        "label": "Enable QR Preview (Only for logged-in users)",
+        "info": "By enabling this field, the Quick Reserve module will be displayed in test mode, visible only to logged-in users"
+    },
+    "data_apertura": {
+        "label": "Opening date",
+        "info": "By setting this date, the calendar will use it as the first available date upon opening"
+    },
+    "codice_sconto_fisso": "Fixed Discount Code",
+    "abilita_codice_sconto_fisso": {
+        "label": "Enable Default Discount Code",
+        "info": "By enabling this field, a default discount code can be set"
+    },
+    "codice_sconto_attivo": "Default set discount code",
+    "visibilita_codice_sconto": {
+        "label": "Discount Code Visibility",
+        "info": "By setting this option, the discount code will be visible only on desktop, only on mobile, or on both"
+    },
+    "solo_mobile": "Mobile Only",
+    "solo_desktop": "Desktop Only",
+    "entrambi": "Both",
+    "classe_qr": {
+        "label": "QR Class"
+    },
+    "usa_anchor_class": {
+        "label": "Use QR within an anchor class",
+        "info": "By enabling this field, the Quick Reserve module will be displayed within a class"
+    },
+    "anchor_class": {
+        "label": "Anchor Class of QR",
+        "info": "The class within which the Quick Reserve module is added, if the option has been selected"
+    },
+    "shortcode": {
+        "label": "Shortcode"
+    },
+    "abilita_qr_shortcode": {
+        "label": "Enable QR Shortcode",
+        "info": "By enabling this field, the Quick Reserve module will be displayed within a page or post using a shortcode"
+    },
+    "nome_shortcode": {
+        "label": "Shortcode Name",
+        "info": "Name of the shortcode you wish to use to display the Quick Reserve module"
+    },
+    "campi_form": {
+        "label": "Form Fields",
+        "info": "You can choose the fields to display within the Quick Reserve module"
+    },
+    "colori_qr": {
+        "label": "QR Colors",
+        "info": "You can customize the colors of the Quick Reserve module"
+    },
+    "pulsante_prenota": "Book Button",
+    "testo_pulsante_prenota": "Book Button Text",
+    "sfondo_qr": "QR Background",
+    "pulsante_modifica_cancella": "Modify/Cancel Button",
+    "colori_calendario": {
+        "label": "Calendar Colors",
+        "info": "You can customize the colors of the calendar"
+    },
+    "sfondo_calendario": "Calendar Background",
+    "testo_date_calendario": "Calendar Dates Text",
+    "background_date_selezionate_calendario": "Background of selected dates in calendar",
+    "testo_date_selezionate_calendario": "Text of selected dates in calendar",
+    "offerte": {
+        "label": "Offers",
+        "info": "The functionality that prints the list of special offers available for the property is automatic and is activated by inserting the placeholder [offerte] into the page or desired location. It is usually inserted in an 'Offers' page dedicated to displaying this list, which updates in real time and automatically according to the settings present on the Blastness extranet for the respective property."
+    },
+    "css_personalizzato": {
+        "label": "Custom CSS",
+        "info": "Insert your custom CSS here, which will be applied to the frontend."
+    },
+    "disabilita_css_qr": {
+        "label": "Disable QR CSS",
+        "info": "By enabling this field, the base CSS of the Quick Reserve module will be disabled"
+    },
+    "abilita_banner_cookie": {
+        "label": "Enable Cookie Banner",
+        "info": "By enabling this field, the cookie banner will be added"
+    },
+    "tipologia_be": {
+        "label": "BE Type",
+        "info": "The BE type is a parameter communicated by Blastness at the time of provision, based on the booking type chosen with the client. Before modifying this parameter, make sure with Blastness that a style suitable for the new type is available."
+    },
+    "parametri_be": {
+        "label": "BE Parameters",
+        "info": "BE parameters are provided by Blastness and are necessary for the correct functioning of the Quick Reserve module."
+    },
+    "tipologia_qr": {
+        "label": "QR Type",
+        "info": "Full-Width: full-width booking bar. Box: booking box."
+    },
+    "posizione_qr_full_width": {
+        "label": "QR Full-Width Position",
+        "info": "By setting the values in the fields, you can determine the position of the Quick Reserve module. Leaving the 'Left' field empty and setting a value in the 'Right' field, the module will be positioned on the right; vice versa, if you leave the 'Right' field empty and set a value in the 'Left' field, the module will be positioned on the left. Similarly, by setting 'Top' and 'Bottom', you can determine the vertical position of the module"
+    },
+    "posizione_qr_box": {
+        "label": "QR Box Position",
+        "info": "By setting the values in the fields, you can determine the position of the Quick Reserve module. Leaving the 'Left' field empty and setting a value in the 'Right' field, the module will be positioned on the right; vice versa, if you leave the 'Right' field empty and set a value in the 'Left' field, the module will be positioned on the left. Similarly, by setting 'Top' and 'Bottom', you can determine the vertical position of the module"
+    },
+    "top": "Top",
+    "bottom": "Bottom",
+    "left": "Left",
+    "right": "Right",
+    "prenota_label": "Book",
+    "apri_calendario_placeholder": "Open calendar",
+    "check_in_label": "Check-in",
+    "check_out_label": "Check-out",
+    "codice_sconto_placeholder": "Discount code",
+    "impostazioni_modulo_qr_blastness": "Blastness QR Module Settings",
+    "non_ci_sono_offerte_disponibili": "There are no offers available.",
+    "impostazioni_salvate": "Settings saved.",
+    "si_e_verificato_un_errore_riprova": "An error occurred. Please try again."
+}

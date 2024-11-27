@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 0.9.6
+Version: 0.9.7
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -253,6 +253,8 @@ function blastqr_enqueue_scripts() {
 
 
 function blastqr_visualizza_offerte() {
+        global $blastqr_lingua_int;
+        $translations = blastqr_get_translations();
         $lingua = get_lingua();
 
         // Controlla se le offerte sono state scaricate per la lingua corrente
@@ -268,7 +270,7 @@ function blastqr_visualizza_offerte() {
     
         // Se non ci sono offerte, mostra un messaggio
         if (empty($offerte)) {
-            return '<p>'. __('Non ci sono offerte disponibili.', 'blastqr').'</p>';
+            return '<p>'. $translations['non_ci_sono_offerte_disponibili'] .'</p>';
         }
     
         // Genera l'output HTML per le offerte
@@ -287,7 +289,7 @@ function blastqr_visualizza_offerte() {
             $output .= '<img src="'. (!empty($offerta['img_file']) ? esc_url($offerta['img_file']) : plugin_dir_url(__FILE__) . 'assets/offer_img_no.jpg') .'">';
             $output .= '<h3>' . sanitize_text_field($offerta['nome']) . '</h3>';
             $output .= '<p>' . sanitize_text_field($offerta['descrizione']) . '</p>';
-            $output .= '<a href="'.$link_pren.'">'. __('Prenota', 'blastqr') .'</a>';
+            $output .= '<a href="'.$link_pren.'">'. $translations['prenota'] .'</a>';
             $output .= '</div>';
         }
     
@@ -327,6 +329,39 @@ function get_lingua() {
     }
 }
 
+function blastqr_get_translations() {
+    static $translations = null;
+
+    if ( $translations !== null ) {
+        return $translations;
+    }
+
+    // Utilizza la tua funzione personalizzata per ottenere il codice lingua a 3 caratteri
+    global $blastqr_lingua_int;
+    if ( empty( $blastqr_lingua_int ) ) {
+        $blastqr_lingua_int = get_lingua();
+    }
+
+    // Percorso del file JSON basato sul codice lingua a 3 caratteri
+    $json_file = plugin_dir_path( __FILE__ ) . 'languages/' . $blastqr_lingua_int . '.json';
+
+    // Se il file non esiste, utilizza la lingua predefinita (ad esempio, 'eng')
+    if ( ! file_exists( $json_file ) ) {
+        $json_file = plugin_dir_path( __FILE__ ) . 'languages/eng.json';
+    }
+
+    // Carica e decodifica il file JSON
+    $json_content = file_get_contents( $json_file );
+    $translations = json_decode( $json_content, true );
+
+    // Se la decodifica fallisce, utilizza un array vuoto
+    if ( ! is_array( $translations ) ) {
+        $translations = array();
+    }
+
+    return $translations;
+}
+
 // Aggiornamenti
 
 // Controlla gli aggiornamenti del plugin da GitHub
@@ -354,7 +389,7 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '0.9.6';
+    $current_version = '0.9.7';
     
     if (version_compare($release->tag_name, $current_version, '>')) {
         $plugin_info = array(

@@ -1,0 +1,128 @@
+{
+    "camere": "Camere",
+    "adulti": "Adulti",
+    "bambini": "Bambini",
+    "codice_sconto": "Codice sconto",
+    "prenota": "Prenota",
+    "apri_calendario": "Apri calendario",
+    "check_in": "Check-in",
+    "check_out": "Check-out",
+    "modifica_cancella_prenotazione": "Modifica/Cancella prenotazione",
+    "abilita_qr": {
+        "label": "Abilita QR",
+        "info": "Abilitando questo campo, il modulo Quick Reserve verrà mostrato sul sito web"
+    },
+    "abilita_preview_qr": {
+        "label": "Abilita QR Preview (Solo per utenti loggati)",
+        "info": "Abilitando questo campo, il modulo Quick Reserve verrà mostrato in modalità di prova, visibile solamente per gli utenti loggati"
+    },
+    "data_apertura": {
+        "label": "Data apertura",
+        "info": "Impostando questa data, il calendario la utilizzerà come prima data disponibile all'apertura"
+    },
+    "codice_sconto_fisso": "Codice Sconto Fisso",
+    "abilita_codice_sconto_fisso": {
+        "label": "Abilita Codice Sconto di Default",
+        "info": "Abilitando questo campo, può essere impostato un codice sconto di default"
+    },
+    "codice_sconto_attivo": "Codice sconto impostato di default",
+    "visibilita_codice_sconto": {
+        "label": "Visibilità Codice Sconto",
+        "info": "Impostando questa opzione, il codice sconto sarà visibile solo su desktop, solo su mobile o su entrambi"
+    },
+    "solo_mobile": "Solo Mobile",
+    "solo_desktop": "Solo Desktop",
+    "entrambi": "Entrambi",
+    "classe_qr": {
+        "label": "Classe QR"
+    },
+    "usa_anchor_class": {
+        "label": "Usa QR all'interno di una classe di ancoraggio",
+        "info": "Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di un classe"
+    },  
+    "anchor_class": {
+        "label": "Classe di ancoraggio del QR",
+        "info": "La classe all'interno di cui viene aggiunto il modulo Quick Reserve, se l'opzione è stata selezionata"
+    },
+    "shortcode": {
+        "label": "Shortcode"
+    },
+    "abilita_qr_shortcode": {
+        "label": "Abilita QR Shortcode",
+        "info": "Abilitando questo campo, il modulo Quick Reserve verrà mostrato all'interno di una pagina o di un post utilizzando uno shortcode"
+    },
+    "nome_shortcode": {
+        "label": "Nome Shortcode",
+        "info": "Nome dello shortcode che desideri utilizzare per mostrare il modulo Quick Reserve"
+    },
+    "campi_form": {
+        "label": "Campi Form",
+        "info": "Puoi scegliere i campi da mostrare all'interno del modulo Quick Reserve"
+    },
+    "colori_qr": {
+        "label": "Colori QR",
+        "info": "Puoi personalizzare i colori del modulo Quick Reserve"
+    },
+    "pulsante_prenota": "Pulsante Prenota",
+    "testo_pulsante_prenota": "Testo Pulsante Prenota",
+    "sfondo_qr": "Sfondo QR",
+    "pulsante_modifica_cancella": "Pulsante Modifica/Cancella",
+    "colori_calendario": {
+        "label": "Colori Calendario",
+        "info": "Puoi personalizzare i colori del calendario"
+    },
+    "sfondo_calendario": "Sfondo calendario",
+    "testo_date_calendario": "Testo date calendario",
+    "background_date_selezionate_calendario": "Background date selezionate calendario",
+    "testo_date_selezionate_calendario": "Testo date selezionate calendario",
+    "offerte": {
+        "label": "Offerte",
+        "info": "La funzionalità che stampa l'elenco delle Offerte speciali disponibili per la struttura è automatica, e si attiva inserendo nella pagina o nel luogo desiderato il segnaposto [offerte]. Solitamente viene inserito in una pagina 'Offerte' adibita alla visualizzazione di tale Elenco, che si aggiorna in tempo reale e in modo automatico secondo i settaggi presenti sull'extranet di Blastness per la relativa struttura ricettiva."
+    },
+    "css_personalizzato": {
+        "label": "CSS Personalizzato",
+        "info": "Inserisci qui il tuo CSS personalizzato che verrà applicato al frontend."
+    },
+    "disabilita_css_qr": {
+        "label": "Disabilita CSS QR",
+        "info": "Abilitando questo campo, il CSS base del modulo Quick Reserve verrà disabilitato"
+    },
+    "abilita_banner_cookie": {
+        "label": "Abilita Banner Cookie",
+        "info": "Abilitando questo campo viene abilitato il banner cookie"
+    },
+    "tipologia_be": {
+        "label": "Tipologia BE",
+        "info": "La tipologia BE è un parametro che viene comunicato da Blastness al momento della fornitura, in base alla tipologia di booking scelta insieme al cliente. Prima di modificare questo parametro accertarsi con Blastness della presenza di uno stile adatto alla nuova tipologia."
+    },
+    "parametri_be": {
+        "label": "Parametri BE",
+        "info": "I parametri BE sono parametri che vengono forniti da Blastness e sono necessari per il corretto funzionamento del modulo Quick Reserve."
+    },
+    "tipologia_qr": {
+        "label": "Tipologia QR",
+        "info": "Full-Width: barra di prenotazione a tutta larghezza. Box: box di prenotazione."
+    },
+    "posizione_qr_full_width": {
+        "label": "Posizione QR Full-Width",
+        "info": "Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un valore nel campo \"Right\" il modulo verrà posizionato a destra, viceversa se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo \"Left\" il modulo verrà posizionato a sinistra. Allo stesso modo impostando \"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo"
+    },
+    "posizione_qr_box": {
+        "label": "Posizione QR Box",
+        "info": "Impostando i valori nei campi può essere determinata la posizione del modulo Quick Reserve. Lasciando vuoto il campo \"Left\" e impostando un valore nel campo \"Right\" il modulo verrà posizionato a destra, viceversa se si lascia vuoto il campo \"Right\" e si imposta un valore nel campo \"Left\" il modulo verrà posizionato a sinistra. Allo stesso modo impostando \"Top\" e \"Bottom\" si può determinare la posizione verticale del modulo"
+    },
+    "top": "Top",
+    "bottom": "Bottom",
+    "left": "Left",
+    "right": "Right",
+    "prenota_label": "Prenota",
+    "apri_calendario_placeholder": "Apri calendario",
+    "check_in_label": "Check-in",
+    "check_out_label": "Check-out",
+    "codice_sconto_placeholder": "Codice sconto",
+    "impostazioni_modulo_qr_blastness": "Impostazioni modulo QR Blastness",
+    "non_ci_sono_offerte_disponibili": "Non ci sono offerte disponibili.",
+    "impostazioni_salvate": "Impostazioni salvate.",
+    "si_e_verificato_un_errore_riprova": "Si è verificato un errore. Riprova."
+  }
+  
