@@ -4,7 +4,7 @@
 Plugin Name: BlastQR
 Plugin URI: https://github.com/assistenzablastness/blastqr
 Description: Modulo Quick Reserve collegato al Booking Engine Blastness
-Version: 0.9.8
+Version: 0.9.9
 Author: Blastness
 Author URI: https://blastness.com
 Text Domain: blastqr
@@ -200,17 +200,8 @@ function carica_colori_qr() {
 
 // Funzione per caricare il textdomain per le lingue
 function blastqr_load_textdomain() {
-    // Recupera la lingua corrente impostata in WordPress
-    $locale = get_locale();
-  
-    // Percorso della directory delle traduzioni
-    $mofile = dirname(__FILE__) . '/languages/blastqr_' . $locale . '.mo';
-
-   
-    // Verifica se il file di traduzione esiste e lo carica
-    if (file_exists($mofile)) {
-        load_textdomain('blastqr', $mofile);
-    }
+    global $blastqr_lingua_int;
+    $blastqr_lingua_int = get_lingua();
 }
 
 
@@ -389,7 +380,7 @@ function blastqr_check_for_plugin_update($transient) {
         return $transient;
     }
 
-    $current_version = '0.9.8';
+    $current_version = '0.9.9';
     
     if (version_compare($release->tag_name, $current_version, '>')) {
         $plugin_info = array(
